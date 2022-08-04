@@ -30,6 +30,7 @@
   <meta name="theme-color" content="#ffffff">
   <!-- Vendors styles-->
   <link rel="stylesheet" href="{{ asset('vendors/simplebar/dist/simplebar.css') }}">
+  <link rel="stylesheet" href="{{ asset('vendors/@coreui/icons/css/all.min.css') }}">
   <!-- Main styles for this application-->
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
   <!-- We use those styles to show code examples, you should remove them in your application.-->

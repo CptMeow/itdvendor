@@ -35,24 +35,25 @@
   <meta name="theme-color" content="#ffffff">
   <!-- Vendors styles-->
   <link rel="stylesheet" href="{{ asset('vendors/simplebar/dist/simplebar.css') }}">
+  <link rel="stylesheet" href="{{ asset('vendors/@coreui/icons/css/all.min.css') }}">
   <!-- Main styles for this application-->
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
   <!-- We use those styles to show code examples, you should remove them in your application.-->
   <link href="{{ asset('css/examples.css') }}" rel="stylesheet">
+  <!--CSS PAGE-->
   {{ $css }}
 </head>
 
 <body class="app">
-  @include('template.shared.nav-builder')
-  @include('template.shared.sidebar')
+  @include('layouts.template.shared.nav-builder')
+  @include('layouts.template.shared.sidebar')
 
   <div class="wrapper d-flex flex-column min-vh-100 bg-light bg-opacity-50 dark:bg-transparent">
-    @include('template.shared.header')
+    @include('layouts.template.shared.header')
     <div class="body flex-grow-1 px-3">
-      @yield('content')
       {{ $content }}
     </div>
-    @include('template.shared.footer')
+    @include('layouts.template.shared.footer')
   </div>
 
   <!-- CoreUI and necessary plugins-->
@@ -84,7 +85,7 @@
       document.body.dispatchEvent(event);
     }
   </script>
-  
+  <!--JS PAGE-->
   {{ $javascript }}
 </body>
 

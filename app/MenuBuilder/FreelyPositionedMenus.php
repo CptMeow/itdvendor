@@ -10,10 +10,13 @@ class FreelyPositionedMenus{
 
     private static function renderDropdown($data, $prefixClass){
         if(array_key_exists('slug', $data) && $data['slug'] === 'dropdown'){
-            echo '<li class="' . $prefixClass . 'nav-item dropdown px-3">';
-            echo '<a class="' . $prefixClass . 'nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" href="#">';
+            echo '<li class="' . $prefixClass . 'nav-item dropdown">';
+            echo '<a class="' . $prefixClass . 'nav-link dropdown-toggle" data-coreui-toggle="dropdown" role="button" aria-expanded="false" href="#">';
             if($data['hasIcon'] === true && $data['iconType'] === 'coreui'){
-                echo '<i class="' . $data['icon'] . ' ' . $prefixClass . 'nav-icon"></i>';    
+                //echo '<i class="' . $data['icon'] . ' ' . $prefixClass . 'nav-icon"></i>';    
+                echo '<svg class="nav-icon">';
+                echo '    <use xlink:href="'.asset("vendors/@coreui/icons/sprites/free.svg#".$data['icon']).'"></use>';
+                echo '</svg>';
             }
             echo $data['name'] . '</a>';
             echo '<div class="dropdown-menu">';
@@ -22,7 +25,7 @@ class FreelyPositionedMenus{
         }else{
             for($i = 0; $i < count($data); $i++){
                 if( $data[$i]['slug'] === 'link' ){
-                    echo '<a class="' . $prefixClass . 'nav-link dropdown-item" href="' . env('APP_URL', '') . $data[$i]['href'] . '">';
+                    echo '<a class="' . $prefixClass . 'dropdown-item" href="' . env('APP_URL', '') . $data[$i]['href'] . '">';
                     echo '<span class="' . $prefixClass . 'nav-icon"></span>' . $data[$i]['name'] . '</a>';
                 }elseif( $data[$i]['slug'] === 'dropdown' ){
                     self::renderDropdown( $data[$i], $prefixClass );
@@ -41,7 +44,7 @@ class FreelyPositionedMenus{
         echo '<ul class="' . $prefixClass . 'nav ' . $navClass . '">';
         foreach($data as $d){
             if($d['slug'] === 'link'){
-                echo '<li class="' . $prefixClass .'nav-item px-3">';
+                echo '<li class="' . $prefixClass .'nav-item">';
                 echo '<a class="' . $prefixClass . 'nav-link" href="' . env('APP_URL', '') . $d['href'] . '">';
                 if($d['hasIcon'] === true){
                     if($d['iconType'] === 'coreui'){
@@ -54,7 +57,7 @@ class FreelyPositionedMenus{
             }elseif($d['slug'] === 'dropdown'){
                 self::renderDropdown($d, $prefixClass);
             }elseif($d['slug'] === 'title'){
-                echo '<li class="' . $prefixClass . 'nav-title px-3">';
+                echo '<li class="' . $prefixClass . 'nav-title">';
                 if($d['hasIcon'] === true){
                     if($d['iconType'] === 'coreui'){
                         echo '<i class="' . $d['icon'] . ' ' . $prefixClass . 'nav-icon"></i>';
