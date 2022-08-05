@@ -21,7 +21,7 @@
                           {{ __('coreuiforms.menu.menu') }}
                         </th>
                         <td>
-                          <select class="form-control" name="menu" id="menu">
+                          <select class="form-select" name="menu" id="menu">
                             @foreach ($menulist as $menu1)
                               <option value="{{ $menu1->id }}">{{ $menu1->name }}</option>
                             @endforeach
@@ -71,7 +71,7 @@
                           {{ __('coreuiforms.menu.type') }}
                         </th>
                         <td>
-                          <select class="form-control" name="type" id="type">
+                          <select class="form-select" name="type" id="type">
                             <option value="link">Link</option>
                             <option value="title">Title</option>
                             <option value="dropdown">Dropdown</option>
@@ -90,7 +90,7 @@
                           <br><br>
                           <div id="div-dropdown-parent">
                             {{ __('coreuiforms.menu.dropdown_parent') }}:
-                            <select class="form-control" name="parent" id="parent">
+                            <select class="form-select" name="parent" id="parent">
 
                             </select>
                           </div>
@@ -107,8 +107,8 @@
                       </tr>
                     </tbody>
                   </table>
-                  <button class="btn btn-primary" type="submit">{{ __('coreuiforms.save') }}</button>
-                  <a class="btn btn-primary" href="{{ route('menu.index') }}">{{ __('coreuiforms.return') }}</a>
+                  <button class="btn btn-primary text-white" type="submit">{{ __('coreuiforms.save') }}</button>
+                  <a class="btn btn-primary text-white" href="{{ route('menu.index') }}">{{ __('coreuiforms.return') }}</a>
                 </form>
               </div>
             </div>

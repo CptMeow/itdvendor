@@ -31,7 +31,7 @@
                           {{ __('coreuiforms.menu.menu') }}
                         </th>
                         <td>
-                          <select class="form-control" name="menu" id="menu">
+                          <select class="form-select" name="menu" id="menu">
                             @foreach ($menulist as $menu1)
                               @if ($menu1->id == $menuElement->menu_id)
                                 <option value="{{ $menu1->id }}" selected>{{ $menu1->name }}</option>
@@ -112,7 +112,7 @@
                           {{ __('coreuiforms.menu.type') }}
                         </th>
                         <td>
-                          <select class="form-control" name="type" id="type">
+                          <select class="form-select" name="type" id="type">
                             @if ($menuElement->slug === 'link')
                               <option value="link" selected>Link</option>
                             @else
@@ -144,7 +144,7 @@
                           <div id="div-dropdown-parent">
                             {{ __('coreuiforms.menu.dropdown_parent') }}:
                             <input type="hidden" id="parentId" value="{{ $menuElement->parent_id }}" />
-                            <select class="form-control" name="parent" id="parent">
+                            <select class="form-select" name="parent" id="parent">
 
                             </select>
                           </div>
@@ -161,8 +161,8 @@
                       </tr>
                     </tbody>
                   </table>
-                  <button class="btn btn-primary" type="submit">{{ __('coreuiforms.save') }}</button>
-                  <a class="btn btn-primary" href="{{ route('menu.index', ['menu' => $menuElement->menu_id]) }}">{{ __('coreuiforms.return') }}</a>
+                  <button class="btn btn-primary text-white" type="submit">{{ __('coreuiforms.save') }}</button>
+                  <a class="btn btn-primary text-white" href="{{ route('menu.index', ['menu' => $menuElement->menu_id]) }}">{{ __('coreuiforms.return') }}</a>
                 </form>
               </div>
             </div>
