@@ -10,7 +10,7 @@
               </div>
               <div class="card-body">
                 <div class="row">
-                  <a class="btn btn-lg btn-primary" href="{{ route('roles.create') }}">{{ __('coreuiforms.roles.add_new_role') }}</a>
+                  <a class="btn btn-lg btn-primary text-white" href="{{ route('roles.create') }}">{{ __('coreuiforms.roles.add_new_role') }}</a>
                 </div>
                 <br>
                 <table class="table table-striped table-bordered datatable">
@@ -20,7 +20,6 @@
                       <th>{{ __('coreuiforms.roles.hierarchy') }}</th>
                       <th>{{ __('coreuiforms.roles.created_at') }}</th>
                       <th>{{ __('coreuiforms.roles.updated_at') }}</th>
-                      <th></th>
                       <th></th>
                       <th></th>
                       <th></th>
@@ -43,30 +42,30 @@
                           {{ $role->updated_at }}
                         </td>
                         <td>
-                          <a class="btn btn-success" href="{{ route('roles.up', ['id' => $role->id]) }}">
-                            <svg class="icon">
-                              <use xlink:href="{{asset("vendors/@coreui/icons/sprites/free.svg#cil-arrow-thick-top")}}"></use>
-                            </svg>
-                          </a>
+                          <div class="btn-group me-2" role="group" aria-label="First group">
+                            <a class="btn btn-success text-white" href="{{ route('roles.down', ['id' => $role->id]) }}">
+                              <svg class="icon">
+                                  <use xlink:href="{{asset("vendors/@coreui/icons/sprites/free.svg#cil-arrow-thick-bottom")}}"></use>
+                              </svg>
+                              <a class="btn btn-success text-white" href="{{ route('roles.up', ['id' => $role->id]) }}">
+                                <svg class="icon">
+                                  <use xlink:href="{{asset("vendors/@coreui/icons/sprites/free.svg#cil-arrow-thick-top")}}"></use>
+                                </svg>
+                              </a>
+                            </a>
+                          </div>   
+                        </td>
+                        <td>                     
+                          <a href="{{ route('roles.show', $role->id) }}" class="btn btn-primary text-white">{{ __('coreuiforms.view') }}</a>
                         </td>
                         <td>
-                          <a class="btn btn-success" href="{{ route('roles.down', ['id' => $role->id]) }}">
-                            <svg class="icon">
-                                <use xlink:href="{{asset("vendors/@coreui/icons/sprites/free.svg#cil-arrow-thick-bottom")}}"></use>
-                            </svg>
-                          </a>
-                        </td>
-                        <td>
-                          <a href="{{ route('roles.show', $role->id) }}" class="btn btn-primary">{{ __('coreuiforms.view') }}</a>
-                        </td>
-                        <td>
-                          <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-primary">{{ __('coreuiforms.edit') }}</a>
+                          <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-primary text-white">{{ __('coreuiforms.edit') }}</a>
                         </td>
                         <td>
                           <form action="{{ route('roles.destroy', $role->id) }}" method="POST">
                             @method('DELETE')
                             @csrf
-                            <button class="btn btn-danger">{{ __('coreuiforms.delete') }}</button>
+                            <button class="btn btn-danger text-white">{{ __('coreuiforms.delete') }}</button>
                           </form>
                         </td>
                       </tr>

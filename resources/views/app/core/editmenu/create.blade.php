@@ -37,7 +37,7 @@
                             @foreach ($roles as $role)
                               <tr>
                                 <td>
-                                  <input type="checkbox" name="role[]" value="{{ $role }}" class="form-control" />
+                                  <input type="checkbox" name="role[]" value="{{ $role }}" class="form-checkbox" />
                                 </td>
                                 <td>
                                   {{ $role }}
@@ -108,7 +108,7 @@
                     </tbody>
                   </table>
                   <button class="btn btn-primary text-white" type="submit">{{ __('coreuiforms.save') }}</button>
-                  <a class="btn btn-primary text-white" href="{{ route('menu.index') }}">{{ __('coreuiforms.return') }}</a>
+                  <a class="btn btn-secondary text-dark" href="{{ route('menu.index') }}">{{ __('coreuiforms.return') }}</a>
                 </form>
               </div>
             </div>

@@ -23,7 +23,7 @@
             }
           ?>   
           <ul class="header-nav ms-auto">
-            <li class="c-header-nav-item">
+            <li class="header-nav-item">
               <form id="select-locale-form" action="/locale" method="GET">
                 <select name="locale" id="select-locale" class="form-select form-select-sm">
                     @foreach($locales as $locale)
