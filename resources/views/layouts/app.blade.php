@@ -59,7 +59,6 @@
   <!-- CoreUI and necessary plugins-->
   <script src="{{ asset('vendors/@coreui/coreui-pro/dist/js/coreui.bundle.min.js') }}"></script>
   <script src="{{ asset('vendors/simplebar/dist/simplebar.min.js') }}"></script>
-  <script src="{{ asset('vendors/simplebar/dist/simplebar.min.js') }}"></script>
   <script>
     if (document.body.classList.contains('dark-theme')) {
       var element = document.getElementById('btn-dark-theme');

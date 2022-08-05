@@ -336,15 +336,15 @@ class MenusTableSeeder extends Seeder
         $id = $this->beginDropdown('admin', 'Admin Settings');
         $this->addTranslation('th', 'ตั้งค่าระบบ', $id);
 
-        $id = $this->insertLink('admin', 'Edit menu',               "admin/menu");
+        $id = $this->insertLink('admin', 'Edit menu',               route("menu.index"));
         $this->addTranslation('th', 'แก้ไขเมนู', $id);
-        $id = $this->insertLink('admin', 'Edit menu elements',      "admin/menu/menu");
-        $this->addTranslation('th', 'Edytuj elementy menu', $id);
-        $id = $this->insertLink('admin', 'Manage Languages',        "admin/languages");
+        $id = $this->insertLink('admin', 'Edit menu elements',      route("menu.menu.index"));
+        $this->addTranslation('th', 'แก้ไขเมนู elements', $id);
+        $id = $this->insertLink('admin', 'Manage Languages',        route("languages.index"));
         $this->addTranslation('th', 'จัดการภาษา', $id);
-        $id = $this->insertLink('admin', 'Edit roles',              "admin/roles");
+        $id = $this->insertLink('admin', 'Edit roles',              route("roles.index"));
         $this->addTranslation('th', 'จัดการ Role', $id);
-        $id = $this->insertLink('admin', 'Edit users',              "admin/users");
+        $id = $this->insertLink('admin', 'Edit Users',              route("users.index"));
         $this->addTranslation('th', 'จัดการผู้ใช้งาน', $id);
 
         $this->endDropdown();

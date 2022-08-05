@@ -59,9 +59,9 @@
                                       }
                                   }
                                   if ($temp === true) {
-                                      echo '<input checked type="checkbox" name="role[]" value="' . $role . '" class="form-check-input"/>';
+                                      echo '<input checked type="checkbox" name="role[]" value="' . $role . '" class="form-control"/>';
                                   } else {
-                                      echo '<input type="checkbox" name="role[]" value="' . $role . '" class="form-check-input"/>';
+                                      echo '<input type="checkbox" name="role[]" value="' . $role . '" class="form-control"/>';
                                   }
                                   ?>
                                 </td>
@@ -144,7 +144,7 @@
                           <div id="div-dropdown-parent">
                             {{ __('coreuiforms.menu.dropdown_parent') }}:
                             <input type="hidden" id="parentId" value="{{ $menuElement->parent_id }}" />
-                            <select class="form-control" name="parent" id="parent">
+                            <select class="form-select" name="parent" id="parent">
 
                             </select>
                           </div>
@@ -161,8 +161,8 @@
                       </tr>
                     </tbody>
                   </table>
-                  <button class="btn btn-primary" type="submit">{{ __('coreuiforms.save') }}</button>
-                  <a class="btn btn-primary" href="{{ route('menu.index', ['menu' => $menuElement->menu_id]) }}">{{ __('coreuiforms.return') }}</a>
+                  <button class="btn btn-primary text-white" type="submit">{{ __('coreuiforms.save') }}</button>
+                  <a class="btn btn-primary text-white" href="{{ route('menu.index', ['menu' => $menuElement->menu_id]) }}">{{ __('coreuiforms.return') }}</a>
                 </form>
               </div>
             </div>

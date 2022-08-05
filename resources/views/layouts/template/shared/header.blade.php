@@ -22,22 +22,6 @@
                 FreelyPositionedMenus::render( $appMenus['top menu'] , '', 'd-md-down-none');
             }
           ?>   
-          {{-- <nav class="header-nav ms-auto me-3">
-            <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-            <input class="btn-check" id="btn-light-theme" type="radio" name="theme-switch" autocomplete="off" value="light" onchange="handleThemeChange(this)">
-            <label class="btn btn-primary" for="btn-light-theme">
-            <svg class="icon">
-            <use xlink:href="{{ asset("vendors/@coreui/icons/sprites/free.svg#cil-sun")}}"></use>
-            </svg>
-            </label>
-            <input class="btn-check" id="btn-dark-theme" type="radio" name="theme-switch" autocomplete="off" value="dark" onchange="handleThemeChange(this)">
-            <label class="btn btn-primary" for="btn-dark-theme">
-            <svg class="icon">
-            <use xlink:href="{{ asset("vendors/@coreui/icons/sprites/free.svg#cil-moon")}}"></use>
-            </svg>
-            </label>
-            </div>
-          </nav> --}}
           <ul class="header-nav ms-auto">
             <li class="c-header-nav-item">
               <form id="select-locale-form" action="/locale" method="GET">

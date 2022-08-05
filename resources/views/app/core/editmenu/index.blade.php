@@ -10,12 +10,12 @@
               </div>
               <div class="card-body">
                 <div class="row mb-3 ml-3">
-                  <a class="btn btn-lg btn-primary" href="{{ route('menu.create') }}">{{ __('coreuiforms.menu.add_new_menu_element') }}</a>
+                  <a class="btn btn-lg btn-primary text-white" href="{{ route('menu.create') }}">{{ __('coreuiforms.menu.add_new_menu_element') }}</a>
                 </div>
                 <div class="row mb-3">
                   <div class="col-sm-4">
                     <form action="{{ route('menu.index') }}" methos="GET">
-                      <select class="form-control" name="menu">
+                      <select class="form-select" name="menu">
                         @foreach ($menulist as $menu1)
                           @if ($menu1->id == $thisMenu)
                             <option value="{{ $menu1->id }}" selected>{{ $menu1->name }}</option>
@@ -25,7 +25,7 @@
                         @endforeach
                       </select>
                       <br>
-                      <button type="submit" class="btn btn-primary">{{ __('coreuiforms.menu.change_menu') }}</button>
+                      <button type="submit" class="btn btn-primary text-white">{{ __('coreuiforms.menu.change_menu') }}</button>
                     </form>
                   </div>
                 </div>
@@ -37,7 +37,7 @@
                         echo '<tr>';
                         echo '<td>';
                         if ($data['hasIcon'] === true && $data['iconType'] === 'coreui') {
-                            //echo '<svg class="c-nav-icon edit-menu-icon"><use xlink:href="/assets/icons/coreui/free-symbol-defs.svg#' . $data['icon'] . '"></use></svg>';
+                            echo '<svg class="c-nav-icon edit-menu-icon"><use xlink:href="/assets/icons/coreui/free-symbol-defs.svg#' . $data['icon'] . '"></use></svg>';
                             echo '<i class="' . $data['icon'] . '"></i>';
                         }
                         echo '</td>';
@@ -46,19 +46,19 @@
                         echo '<td></td>';
                         echo '<td>' . $data['sequence'] . '</td>';
                         echo '<td>';
-                        echo '<a class="btn btn-success" href="' . route('menu.up', ['id' => $data['id']]) . '"><i class="cil-arrow-thick-top"></i></a>';
+                        echo '<a class="btn btn-success text-white" href="' . route('menu.up', ['id' => $data['id']]) . '"><i class="cil-arrow-thick-top"></i></a>';
                         echo '</td>';
                         echo '<td>';
-                        echo '<a class="btn btn-success" href="' . route('menu.down', ['id' => $data['id']]) . '"><i class="cil-arrow-thick-bottom"></i></a>';
+                        echo '<a class="btn btn-success text-white" href="' . route('menu.down', ['id' => $data['id']]) . '"><i class="cil-arrow-thick-bottom"></i></a>';
                         echo '</td>';
                         echo '<td>';
-                        echo '<a class="btn btn-primary" href="' . route('menu.show', ['id' => $data['id']]) . '">' . __('coreuiforms.view') . '</a>';
+                        echo '<a class="btn btn-primary text-white" href="' . route('menu.show', ['id' => $data['id']]) . '">' . __('coreuiforms.view') . '</a>';
                         echo '</td>';
                         echo '<td>';
-                        echo '<a class="btn btn-primary" href="' . route('menu.edit', ['id' => $data['id']]) . '">' . __('coreuiforms.edit') . '</a>';
+                        echo '<a class="btn btn-primary text-white" href="' . route('menu.edit', ['id' => $data['id']]) . '">' . __('coreuiforms.edit') . '</a>';
                         echo '</td>';
                         echo '<td>';
-                        echo '<a class="btn btn-danger" href="' . route('menu.delete', ['id' => $data['id']]) . '">' . __('coreuiforms.delete') . '</a>';
+                        echo '<a class="btn btn-danger text-white" href="' . route('menu.delete', ['id' => $data['id']]) . '">' . __('coreuiforms.delete') . '</a>';
                         echo '</td>';
                         echo '</tr>';
                         renderDropdownForMenuEdit($data['elements'], $role);
@@ -74,19 +74,19 @@
                                 echo '<td>' . $data[$i]['href'] . '</td>';
                                 echo '<td>' . $data[$i]['sequence'] . '</td>';
                                 echo '<td>';
-                                echo '<a class="btn btn-success" href="' . route('menu.up', ['id' => $data[$i]['id']]) . '"><i class="cil-arrow-thick-top"></i></a>';
+                                echo '<a class="btn btn-success text-white" href="' . route('menu.up', ['id' => $data[$i]['id']]) . '"><i class="cil-arrow-thick-top"></i></a>';
                                 echo '</td>';
                                 echo '<td>';
-                                echo '<a class="btn btn-success" href="' . route('menu.down', ['id' => $data[$i]['id']]) . '"><i class="cil-arrow-thick-bottom"></i></a>';
+                                echo '<a class="btn btn-success text-white" href="' . route('menu.down', ['id' => $data[$i]['id']]) . '"><i class="cil-arrow-thick-bottom"></i></a>';
                                 echo '</td>';
                                 echo '<td>';
-                                echo '<a class="btn btn-primary" href="' . route('menu.show', ['id' => $data[$i]['id']]) . '">' . __('coreuiforms.view') . '</a>';
+                                echo '<a class="btn btn-primary text-white" href="' . route('menu.show', ['id' => $data[$i]['id']]) . '">' . __('coreuiforms.view') . '</a>';
                                 echo '</td>';
                                 echo '<td>';
-                                echo '<a class="btn btn-primary" href="' . route('menu.edit', ['id' => $data[$i]['id']]) . '">' . __('coreuiforms.edit') . '</a>';
+                                echo '<a class="btn btn-primary text-white" href="' . route('menu.edit', ['id' => $data[$i]['id']]) . '">' . __('coreuiforms.edit') . '</a>';
                                 echo '</td>';
                                 echo '<td>';
-                                echo '<a class="btn btn-danger" href="' . route('menu.delete', ['id' => $data[$i]['id']]) . '">' . __('coreuiforms.delete') . '</a>';
+                                echo '<a class="btn btn-danger text-white" href="' . route('menu.delete', ['id' => $data[$i]['id']]) . '">' . __('coreuiforms.delete') . '</a>';
                                 echo '</td>';
                                 echo '</tr>';
                             } elseif ($data[$i]['slug'] === 'dropdown') {
@@ -142,23 +142,23 @@
                             {{ $menuel['sequence'] }}
                           </td>
                           <td>
-                            <a class="btn btn-success" href="{{ route('menu.up', ['id' => $menuel['id']]) }}">
+                            <a class="btn btn-success text-white" href="{{ route('menu.up', ['id' => $menuel['id']]) }}">
                               <i class="cil-arrow-thick-top"></i>
                             </a>
                           </td>
                           <td>
-                            <a class="btn btn-success" href="{{ route('menu.down', ['id' => $menuel['id']]) }}">
+                            <a class="btn btn-success text-white" href="{{ route('menu.down', ['id' => $menuel['id']]) }}">
                               <i class="cil-arrow-thick-bottom"></i>
                             </a>
                           </td>
                           <td>
-                            <a class="btn btn-primary" href="{{ route('menu.show', ['id' => $menuel['id']]) }}">{{ __('coreuiforms.view') }}</a>
+                            <a class="btn btn-primary text-white" href="{{ route('menu.show', ['id' => $menuel['id']]) }}">{{ __('coreuiforms.view') }}</a>
                           </td>
                           <td>
-                            <a class="btn btn-primary" href="{{ route('menu.edit', ['id' => $menuel['id']]) }}">{{ __('coreuiforms.edit') }}</a>
+                            <a class="btn btn-primary text-white" href="{{ route('menu.edit', ['id' => $menuel['id']]) }}">{{ __('coreuiforms.edit') }}</a>
                           </td>
                           <td>
-                            <a class="btn btn-danger" href="{{ route('menu.delete', ['id' => $menuel['id']]) }}">{{ __('coreuiforms.delete') }}</a>
+                            <a class="btn btn-danger text-white" href="{{ route('menu.delete', ['id' => $menuel['id']]) }}">{{ __('coreuiforms.delete') }}</a>
                           </td>
                         </tr>
                       @elseif($menuel['slug'] === 'dropdown')
@@ -188,23 +188,23 @@
                             {{ $menuel['sequence'] }}
                           </td>
                           <td>
-                            <a class="btn btn-success" href="{{ route('menu.up', ['id' => $menuel['id']]) }}">
+                            <a class="btn btn-success text-white" href="{{ route('menu.up', ['id' => $menuel['id']]) }}">
                               <i class="cil-arrow-thick-top"></i>
                             </a>
                           </td>
                           <td>
-                            <a class="btn btn-success" href="{{ route('menu.down', ['id' => $menuel['id']]) }}">
+                            <a class="btn btn-success text-white" href="{{ route('menu.down', ['id' => $menuel['id']]) }}">
                               <i class="cil-arrow-thick-bottom"></i>
                             </a>
                           </td>
                           <td>
-                            <a class="btn btn-primary" href="{{ route('menu.show', ['id' => $menuel['id']]) }}">{{ __('coreuiforms.view') }}</a>
+                            <a class="btn btn-primary text-white" href="{{ route('menu.show', ['id' => $menuel['id']]) }}">{{ __('coreuiforms.view') }}</a>
                           </td>
                           <td>
-                            <a class="btn btn-primary" href="{{ route('menu.edit', ['id' => $menuel['id']]) }}">{{ __('coreuiforms.edit') }}</a>
+                            <a class="btn btn-primary text-white" href="{{ route('menu.edit', ['id' => $menuel['id']]) }}">{{ __('coreuiforms.edit') }}</a>
                           </td>
                           <td>
-                            <a class="btn btn-danger" href="{{ route('menu.delete', ['id' => $menuel['id']]) }}">{{ __('coreuiforms.delete') }}</a>
+                            <a class="btn btn-danger text-white" href="{{ route('menu.delete', ['id' => $menuel['id']]) }}">{{ __('coreuiforms.delete') }}</a>
                           </td>
                         </tr>
                       @endif
