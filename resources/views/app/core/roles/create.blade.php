@@ -26,8 +26,8 @@
                       </tr>
                     </tbody>
                   </table>
-                  <button class="btn btn-primary" type="submit">{{ __('coreuiforms.save') }}</button>
-                  <a class="btn btn-primary" href="{{ route('roles.index') }}">{{ __('coreuiforms.return') }}</a>
+                  <button class="btn btn-primary text-white" type="submit">{{ __('coreuiforms.save') }}</button>
+                  <a class="btn btn-secondary text-dark" href="{{ route('roles.index') }}">{{ __('coreuiforms.return') }}</a>
                 </form>
               </div>
             </div>

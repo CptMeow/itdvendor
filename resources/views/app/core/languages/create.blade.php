@@ -37,7 +37,7 @@
                           Is default
                         </th>
                         <td>
-                          <select class="form-control" name="is_default">
+                          <select class="form-select" name="is_default">
                             <option value="false">Regular language</option>
                             <option value="true">Default language</option>
                           </select>
@@ -45,8 +45,8 @@
                       </tr>
                     </tbody>
                   </table>
-                  <button class="btn btn-primary" type="submit">Save</button>
-                  <a class="btn btn-primary" href="{{ route('languages.index') }}">Return</a>
+                  <button class="btn btn-primary text-white" type="submit">Save</button>
+                  <a class="btn btn-secondary text-dark" href="{{ route('languages.index') }}">Return</a>
                 </form>
               </div>
             </div>

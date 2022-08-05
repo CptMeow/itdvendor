@@ -46,7 +46,7 @@
                     </tr>
                   </tbody>
                 </table>
-                <a class="btn btn-primary" href="{{ route('languages.index') }}">Return</a>
+                <a class="btn btn-primary text-white" href="{{ route('languages.index') }}">Return</a>
               </div>
             </div>
           </div>

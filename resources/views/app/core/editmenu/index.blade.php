@@ -37,7 +37,7 @@
                         echo '<tr>';
                         echo '<td>';
                         if ($data['hasIcon'] === true && $data['iconType'] === 'coreui') {
-                            echo '<svg class="c-nav-icon edit-menu-icon"><use xlink:href="/assets/icons/coreui/free-symbol-defs.svg#' . $data['icon'] . '"></use></svg>';
+                            //echo '<svg class="nav-icon edit-menu-icon"><use xlink:href="' . asset("/assets/icons/coreui/free-symbol-defs.svg#".$data['icon']) . '"></use></svg>';
                             echo '<i class="' . $data['icon'] . '"></i>';
                         }
                         echo '</td>';

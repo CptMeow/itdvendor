@@ -31,7 +31,7 @@
                     </tr>
                   </tbody>
                 </table>
-                <a class="btn btn-primary" href="{{ route('roles.index') }}">{{ __('coreuiforms.return') }}</a>
+                <a class="btn btn-secondary text-dark" href="{{ route('roles.index') }}">{{ __('coreuiforms.return') }}</a>
               </div>
             </div>
           </div>
