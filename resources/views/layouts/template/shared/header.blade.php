@@ -22,9 +22,22 @@
                 FreelyPositionedMenus::render( $appMenus['top menu'] , '', 'd-md-down-none');
             }
           ?>   
-          <ul class="header-nav ms-auto me-3">
-            <li class="nav-item dropdown d-md-down-none">
-              {{ Auth::user()->firstname.' '.Auth::user()->lastname }}
+          <ul class="header-nav ms-auto">
+            <li class="c-header-nav-item">
+              <form id="select-locale-form" action="/locale" method="GET">
+                <select name="locale" id="select-locale" class="form-select form-select-sm">
+                    @foreach($locales as $locale)
+                        @if($locale->short_name == $appLocale)
+                            <option value="{{ $locale->short_name }}" selected>{{ $locale->name }}</option>
+                        @else
+                            <option value="{{ $locale->short_name }}">{{ $locale->name }}</option>
+                        @endif
+                    @endforeach
+                </select>
+              </form>
+            </li>
+            <li class="nav-item d-md-down-none">
+              <a class="nav-link disabled"> {{ Auth::user()->firstname.' '.Auth::user()->lastname }}</a>
             </li>
           </ul>
           <ul class="header-nav">
