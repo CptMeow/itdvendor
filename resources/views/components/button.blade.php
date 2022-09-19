@@ -3,7 +3,7 @@
     'type' => 'button'
 ])
 
-@if($link):
+@if($link)
     <a href="{{$link}}" {{ $attributes->merge(['class' => 'btn text-white']) }}>
         {{ $slot }}
     </a>
