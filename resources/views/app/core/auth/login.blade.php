@@ -10,9 +10,9 @@
               <p class="text-medium-emphasis">Sign In to your account</p>
               <div class="input-group mb-3"><span class="input-group-text">
                   <svg class="icon">
-                    <use xlink:href="vendors/@coreui/icons/sprites/free.svg#cil-user"></use>
+                    <use xlink:href="vendors/@coreui/icons/sprites/free.svg#cil-mail"></use>
                   </svg></span>
-                <input class="form-control" type="text" placeholder="Username" name="email" value="{{ old('email') }}" autofocus>
+                <input class="form-control" type="text" placeholder="Email" name="email" value="{{ old('email') }}" autofocus>
               </div>
               <div class="input-group mb-4"><span class="input-group-text">
                   <svg class="icon">

@@ -76,11 +76,16 @@
                     <use xlink:href="{{ asset("vendors/@coreui/icons/sprites/free.svg#cil-file") }}"></use>
                   </svg> Projects<span class="badge badge-sm bg-primary-gradient ms-2">42</span></a> --}}
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();this.closest('form').submit();">
-                  <svg class="icon me-2">
-                    <use xlink:href="{{ asset("vendors/@coreui/icons/sprites/free.svg#cil-account-logout") }}"></use>
-                  </svg> {{ __('ออกจากระบบ') }}
-                </a>
+
+                <form method="POST" action="{{ route('logout') }}">
+                  @csrf
+                  <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                    this.closest('form').submit();">
+                    <svg class="icon me-2">
+                      <use xlink:href="{{ asset("vendors/@coreui/icons/sprites/free.svg#cil-account-logout") }}"></use>
+                    </svg> {{ __('ออกจากระบบ') }}
+                  </a>
+                </form>
               </div>
             </li>
           </ul>
