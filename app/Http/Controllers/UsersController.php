@@ -65,11 +65,13 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'name'       => 'required|min:1|max:256',
+            'firstname'       => 'required|min:1|max:256',
+            'lastname'       => 'required|min:1|max:256',
             'email'      => 'required|email|max:256'
         ]);
         $user = User::find($id);
-        $user->name       = $request->input('name');
+        $user->firstname       = $request->input('firstname');
+        $user->lastname       = $request->input('lastname');
         $user->email      = $request->input('email');
         $user->save();
         $request->session()->flash('message', 'Successfully updated user');
