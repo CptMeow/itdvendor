@@ -1,3 +1,15 @@
-<button {{ $attributes->merge(['type' => 'submit', 'class' => 'btn ']) }}>
-    {{ $slot }}
-</button>
+@props([
+    'link' => null,
+    'type' => button
+])
+
+if() {
+    <a href="{{$link}}" {{ $attributes->merge(['class' => 'btn ']) }}>
+        {{ $slot }}
+    </a>
+}
+else {
+    <button type="{{$type}}" {{ $attributes->merge(['class' => 'btn ']) }}>
+        {{ $slot }}
+    </button>
+}
