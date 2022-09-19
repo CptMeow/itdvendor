@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Core;
 
+use App\Http\Controllers\Controller;
 use App\Models\MenuLangList;
 use Illuminate\Http\Request;
 use App\Models\MenusLang;
