@@ -1,11 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LanguageController;
-use App\Http\Controllers\MenuController;
-use App\Http\Controllers\MenuElementController;
-use App\Http\Controllers\RolesController;
-use App\Http\Controllers\UsersController;
+use App\Http\Controllers\Core\LanguageController;
+use App\Http\Controllers\Core\MenuController;
+use App\Http\Controllers\Core\MenuElementController;
+use App\Http\Controllers\Core\RolesController;
+use App\Http\Controllers\Core\UsersController;
 
 /*
 |--------------------------------------------------------------------------
