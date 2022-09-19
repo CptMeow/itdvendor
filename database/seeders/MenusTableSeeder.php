@@ -336,15 +336,15 @@ class MenusTableSeeder extends Seeder
         $id = $this->beginDropdown('admin', 'Admin Settings');
         $this->addTranslation('th', 'ตั้งค่าระบบ', $id);
 
-        $id = $this->insertLink('admin', 'Edit menu',               route("menu.index", [], false));
+        $id = $this->insertLink('admin', 'Edit menu',               route("admin.menu.index", [], false));
         $this->addTranslation('th', 'แก้ไขเมนู', $id);
-        $id = $this->insertLink('admin', 'Edit menu elements',      route("menu.menu.index", [], false));
+        $id = $this->insertLink('admin', 'Edit menu elements',      route("admin.menu.menu.index", [], false));
         $this->addTranslation('th', 'Edytuj elementy menu', $id);
-        $id = $this->insertLink('admin', 'Manage Languages',        route("languages.index", [], false));
+        $id = $this->insertLink('admin', 'Manage Languages',        route("admin.languages.index", [], false));
         $this->addTranslation('th', 'จัดการภาษา', $id);
-        $id = $this->insertLink('admin', 'Edit roles',              route("roles.index", [], false));
+        $id = $this->insertLink('admin', 'Edit roles',              route("admin.roles.index", [], false));
         $this->addTranslation('th', 'จัดการ Role', $id);
-        $id = $this->insertLink('admin', 'Edit Users',              route("users.index", [], false));
+        $id = $this->insertLink('admin', 'Edit Users',              route("admin.users.index", [], false));
         $this->addTranslation('th', 'จัดการผู้ใช้งาน', $id);
 
         $this->endDropdown();
