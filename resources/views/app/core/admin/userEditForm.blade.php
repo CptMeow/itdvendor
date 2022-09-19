@@ -28,14 +28,14 @@
                     </div>
                     <input class="form-control" type="text" placeholder="{{ __('coreuiforms.users.lastname') }}" name="lastname" value="{{ $user->lastname }}" required autofocus>
                   </div>
-                  <div class="input-group mb-3">
+                  {{-- <div class="input-group mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text">
                         <i class="cil-user icon icon-xl"></i>
                       </span>
                     </div>
                     <input class="form-control" type="text" placeholder="{{ __('coreuiforms.users.username') }}" name="name" value="{{ $user->name }}" required autofocus>
-                  </div>
+                  </div> --}}
                   <div class="input-group mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text">
