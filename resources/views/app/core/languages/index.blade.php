@@ -10,7 +10,7 @@
               </div>
               <div class="card-body">
                 <div class="row">
-                  <a class="btn btn-lg btn-primary text-white" href="{{ route('languages.create') }}">Add new language</a>
+                  <a class="btn btn-lg btn-primary text-white" href="{{ route('admin.languages.create') }}">Add new language</a>
                 </div>
                 <br>
                 <table class="table table-striped table-bordered datatable">
@@ -43,13 +43,13 @@
                           ?>
                         </td>
                         <td>
-                          <a href="{{ route('languages.show', $lang->id) }}" class="btn btn-primary text-white">Show</a>
+                          <a href="{{ route('admin.languages.show', $lang->id) }}" class="btn btn-primary text-white">Show</a>
                         </td>
                         <td>
-                          <a href="{{ route('languages.edit', $lang->id) }}" class="btn btn-primary text-white">Edit</a>
+                          <a href="{{ route('admin.languages.edit', $lang->id) }}" class="btn btn-primary text-white">Edit</a>
                         </td>
                         <td>
-                          <form action="{{ route('languages.destroy', $lang->id) }}" method="POST">
+                          <form action="{{ route('admin.languages.destroy', $lang->id) }}" method="POST">
                             @method('DELETE')
                             @csrf
                             <button class="btn btn-danger text-white">Delete</button>

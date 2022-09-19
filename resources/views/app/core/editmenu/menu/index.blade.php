@@ -10,7 +10,7 @@
               </div>
               <div class="card-body">
                 <div class="row mb-3 ml-3">
-                  <a class="btn btn-lg btn-primary text-white" href="{{ route('menu.menu.create') }}">{{ __('coreuiforms.menu.add_new_menu') }}</a>
+                  <a class="btn btn-lg btn-primary text-white" href="{{ route('admin.menu.menu.create') }}">{{ __('coreuiforms.menu.add_new_menu') }}</a>
                 </div>
                 <table class="table table-striped table-bordered datatable">
                   <thead>
@@ -27,13 +27,13 @@
                           {{ $menu1->name }}
                         </td>
                         <td>
-                          <a class="btn btn-primary text-white" href="{{ route('menu.index', ['menu' => $menu1->id]) }}">{{ __('coreuiforms.view') }}</a>
+                          <a class="btn btn-primary text-white" href="{{ route('admin.menu.index', ['menu' => $menu1->id]) }}">{{ __('coreuiforms.view') }}</a>
                         </td>
                         <td>
-                          <a class="btn btn-primary text-white" href="{{ route('menu.menu.edit', ['id' => $menu1->id]) }}">{{ __('coreuiforms.edit') }}</a>
+                          <a class="btn btn-primary text-white" href="{{ route('admin.menu.menu.edit', ['id' => $menu1->id]) }}">{{ __('coreuiforms.edit') }}</a>
                         </td>
                         <td>
-                          <a class="btn btn-danger text-white" href="{{ route('menu.menu.delete', ['id' => $menu1->id]) }}">{{ __('coreuiforms.delete') }}</a>
+                          <a class="btn btn-danger text-white" href="{{ route('admin.menu.menu.delete', ['id' => $menu1->id]) }}">{{ __('coreuiforms.delete') }}</a>
                         </td>
                       </tr>
                     @endforeach

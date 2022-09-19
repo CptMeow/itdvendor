@@ -73,7 +73,7 @@ class UsersController extends Controller
         $user->email      = $request->input('email');
         $user->save();
         $request->session()->flash('message', 'Successfully updated user');
-        return redirect()->route('users.index');
+        return redirect()->route('admin.users.index');
     }
 
     /**
@@ -88,6 +88,6 @@ class UsersController extends Controller
         if($user){
             $user->delete();
         }
-        return redirect()->route('users.index');
+        return redirect()->route('admin.users.index');
     }
 }

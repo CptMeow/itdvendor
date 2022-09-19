@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <h4>{{ __('coreuiforms.users.username') }}: {{ $user->name }}</h4>
                     <h4>{{ __('coreuiforms.users.email') }}: {{ $user->email }}</h4>
-                    <a href="{{ route('users.index') }}" class="btn btn-primary">{{ __('coreuiforms.return') }}</a>
+                    <a href="{{ route('admin.users.index') }}" class="btn btn-primary">{{ __('coreuiforms.return') }}</a>
                 </div>
             </div>
           </div>

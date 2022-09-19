@@ -44,7 +44,7 @@ class RolesController extends Controller
             $element->save();
             $switchElement->save();
         }
-        return redirect()->route('roles.index');
+        return redirect()->route('admin.roles.index');
     }
 
     public function moveDown(Request $request){
@@ -58,7 +58,7 @@ class RolesController extends Controller
             $element->save();
             $switchElement->save();
         }
-        return redirect()->route('roles.index');
+        return redirect()->route('admin.roles.index');
     }
 
     /**
@@ -95,7 +95,7 @@ class RolesController extends Controller
         $roleHierarchy->hierarchy = $hierarchy;
         $roleHierarchy->save();
         $request->session()->flash('message', 'Successfully created role');
-        return redirect()->route('roles.create');
+        return redirect()->route('admin.roles.create');
     }
 
     /**
@@ -137,7 +137,7 @@ class RolesController extends Controller
         $role->name = $request->input('name');
         $role->save();
         $request->session()->flash('message', 'Successfully updated role');
-        return redirect()->route('roles.edit', $id); 
+        return redirect()->route('admin.roles.edit', $id); 
     }
 
     /**

@@ -52,7 +52,7 @@ class LanguageController extends Controller
         }
         $menuLang->save();
         $request->session()->flash('message', 'Successfully created language');
-        return redirect()->route('languages.create');
+        return redirect()->route('admin.languages.create');
     }
 
     /**
@@ -102,7 +102,7 @@ class LanguageController extends Controller
         }
         $menuLangList->save();
         $request->session()->flash('message', 'Successfully updated language');
-        return redirect()->route('languages.edit', [$request->input('id')]); 
+        return redirect()->route('admin.languages.edit', [$request->input('id')]); 
     }
 
     /**
