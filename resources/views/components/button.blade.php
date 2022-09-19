@@ -1,6 +1,6 @@
 @props([
     'link' => null,
-    'type' => button
+    'type' => 'button'
 ])
 
 if() {
