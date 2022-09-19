@@ -12,7 +12,7 @@
                 @if (Session::has('message'))
                   <div class="alert alert-success" role="alert">{{ Session::get('message') }}</div>
                 @endif
-                <form method="POST" action="{{ route('roles.update', $role->id) }}">
+                <form method="POST" action="{{ route('admin.roles.update', $role->id) }}">
                   @csrf
                   @method('PUT')
                   <input type="hidden" name="id" value="{{ $role->id }}" />
@@ -29,7 +29,7 @@
                     </tbody>
                   </table>
                   <button class="btn btn-primary text-white" type="submit">{{ __('coreuiforms.save') }}</button>
-                  <a class="btn btn-secondary text-dark" href="{{ route('roles.index') }}">{{ __('coreuiforms.return') }}</a>
+                  <a class="btn btn-secondary text-dark" href="{{ route('admin.roles.index') }}">{{ __('coreuiforms.return') }}</a>
                 </form>
               </div>
             </div>

@@ -112,7 +112,7 @@
                     </tr>
                   </tbody>
                 </table>
-                <a class="btn btn-secondary text-dark" href="{{ route('menu.index', ['menu' => $menuElement->menu_id]) }}">{{ __('coreuiforms.return') }}</a>
+                <a class="btn btn-secondary text-dark" href="{{ route('admin.menu.index', ['menu' => $menuElement->menu_id]) }}">{{ __('coreuiforms.return') }}</a>
               </div>
             </div>
           </div>

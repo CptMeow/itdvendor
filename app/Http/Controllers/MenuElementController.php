@@ -61,7 +61,7 @@ class MenuElementController extends Controller
       $element->save();
       $switchElement->save();
     }
-    return redirect()->route('menu.index', ['menu' => $element->menu_id]);
+    return redirect()->route('admin.menu.index', ['menu' => $element->menu_id]);
   }
 
   public function moveDown(Request $request)
@@ -77,7 +77,7 @@ class MenuElementController extends Controller
       $element->save();
       $switchElement->save();
     }
-    return redirect()->route('menu.index', ['menu' => $element->menu_id]);
+    return redirect()->route('admin.menu.index', ['menu' => $element->menu_id]);
   }
 
   public function getParents(Request $request)
@@ -159,7 +159,7 @@ class MenuElementController extends Controller
       $menusLang->save();
     }
     $request->session()->flash('message', 'Successfully created menu element');
-    return redirect()->route('menu.create');
+    return redirect()->route('admin.menu.create');
   }
 
   public function edit(Request $request)
@@ -209,7 +209,7 @@ class MenuElementController extends Controller
       $menusLang->save();
     }
     $request->session()->flash('message', 'Successfully update menu element');
-    return redirect()->route('menu.edit', ['id' => $request->input('id')]);
+    return redirect()->route('admin.menu.edit', ['id' => $request->input('id')]);
   }
 
   public function show(Request $request)

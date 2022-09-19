@@ -12,7 +12,7 @@
                 @if (Session::has('message'))
                   <div class="alert alert-success" role="alert">{{ Session::get('message') }}</div>
                 @endif
-                <form method="POST" action="{{ route('languages.update', $lang->id) }}">
+                <form method="POST" action="{{ route('admin.languages.update', $lang->id) }}">
                   @csrf
                   @method('PUT')
                   <input type="hidden" name="id" value="{{ $lang->id }}" />
@@ -53,7 +53,7 @@
                     </tbody>
                   </table>
                   <button class="btn btn-primary text-white" type="submit">Save</button>
-                  <a class="btn btn-secondary text-dark" href="{{ route('languages.index') }}">Return</a>
+                  <a class="btn btn-secondary text-dark" href="{{ route('admin.languages.index') }}">Return</a>
                 </form>
               </div>
             </div>

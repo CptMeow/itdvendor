@@ -10,7 +10,7 @@
                     @if(Session::has('message'))
                         <div class="alert alert-success" role="alert">{{ Session::get('message') }}</div>
                     @endif
-                    <form action="{{ route('menu.menu.store') }}" method="POST">
+                    <form action="{{ route('admin.menu.menu.store') }}" method="POST">
                         @csrf
                         <table class="table table-striped table-bordered datatable">
                             <tbody>
@@ -25,7 +25,7 @@
                             </tbody>
                         </table>
                         <button class="btn btn-primary text-white" type="submit">{{ __('coreuiforms.save') }}</button>
-                        <a class="btn btn-secondary text-dark" href="{{ route('menu.menu.index') }}">{{ __('coreuiforms.return') }}</a>
+                        <a class="btn btn-secondary text-dark" href="{{ route('admin.menu.menu.index') }}">{{ __('coreuiforms.return') }}</a>
                     </form>
                 </div>
               </div>

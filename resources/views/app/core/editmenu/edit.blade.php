@@ -21,7 +21,7 @@
                     </ul>
                   </div>
                 @endif
-                <form action="{{ route('menu.update') }}" method="POST">
+                <form action="{{ route('admin.menu.update') }}" method="POST">
                   @csrf
                   <input type="hidden" name="id" value="{{ $menuElement->id }}" id="menuElementId" />
                   <table class="table table-striped table-bordered datatable">
@@ -162,7 +162,7 @@
                     </tbody>
                   </table>
                   <button class="btn btn-primary text-white" type="submit">{{ __('coreuiforms.save') }}</button>
-                  <a class="btn btn-secondary text-dark" href="{{ route('menu.index', ['menu' => $menuElement->menu_id]) }}">{{ __('coreuiforms.return') }}</a>
+                  <a class="btn btn-secondary text-dark" href="{{ route('admin.menu.index', ['menu' => $menuElement->menu_id]) }}">{{ __('coreuiforms.return') }}</a>
                 </form>
               </div>
             </div>

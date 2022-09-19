@@ -29,14 +29,14 @@
                           <td>{{ $user->menuroles }}</td>
                           <td>{{ $user->email_verified_at }}</td>
                           <td>
-                            <a href="{{ route('users.show', $user->id) }}" class="btn btn-block btn-primary">{{ __('coreuiforms.view') }}</a>
+                            <a href="{{ route('admin.users.show', $user->id) }}" class="btn btn-block btn-primary">{{ __('coreuiforms.view') }}</a>
                           </td>
                           <td>
-                            <a href="{{ route('users.edit', $user->id ) }}" class="btn btn-block btn-primary">{{ __('coreuiforms.edit') }}</a>
+                            <a href="{{ route('admin.users.edit', $user->id ) }}" class="btn btn-block btn-primary">{{ __('coreuiforms.edit') }}</a>
                           </td>
                           <td>
                             @if( $you->id !== $user->id )
-                            <form action="{{ route('users.destroy', $user->id ) }}" method="POST">
+                            <form action="{{ route('admin.users.destroy', $user->id ) }}" method="POST">
                                 @method('DELETE')
                                 @csrf
                                 <button class="btn btn-block btn-danger">{{ __('coreuiforms.delete') }}</button>
