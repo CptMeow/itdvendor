@@ -5,11 +5,11 @@
 @mixin form-validation-state-selector($state) {
   @if ($state == "valid" or $state == "invalid") {
     .was-validated #{if(&, "&", "")}:#{$state},
-    #{if(&, "&", "")}.is-#{$state}, #{if(&, "&", "")}.ng-#{$state} {
+    #{if(&, "&", "")}.is-#{$state} {
       @content;
     }
   } @else {
-    #{if(&, "&", "")}.is-#{$state}, #{if(&, "&", "")}.ng-#{$state}  {
+    #{if(&, "&", "")}.is-#{$state} {
       @content;
     }
   }
@@ -101,6 +101,14 @@
       &:focus {
         border-color: $color;
         box-shadow: $focus-box-shadow;
+      }
+    }
+  }
+
+  .form-control-color {
+    @include form-validation-state-selector($state) {
+      @if $enable-validation-icons {
+        width: add($form-color-width, $input-height-inner);
       }
     }
   }

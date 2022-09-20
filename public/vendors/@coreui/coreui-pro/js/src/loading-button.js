@@ -1,14 +1,11 @@
 /**
  * --------------------------------------------------------------------------
- * CoreUI PRO (v4.2.0): loading-button.js
+ * CoreUI PRO (v4.3.4): loading-button.js
  * License (https://coreui.io/pro/license-new/)
  * --------------------------------------------------------------------------
  */
 
-import {
-  defineJQueryPlugin,
-  typeCheckConfig
-} from './util/index'
+import { defineJQueryPlugin } from './util/index'
 import Data from './dom/data'
 import EventHandler from './dom/event-handler'
 import Manipulator from './dom/manipulator'
@@ -138,7 +135,7 @@ class LoadingButton extends BaseComponent {
       ...Manipulator.getDataAttributes(this._element),
       ...(typeof config === 'object' ? config : {})
     }
-    typeCheckConfig(NAME, config, DefaultType)
+
     return config
   }
 
