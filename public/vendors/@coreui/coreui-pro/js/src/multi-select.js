@@ -1,14 +1,11 @@
 /**
  * --------------------------------------------------------------------------
- * CoreUI PRO (v4.2.0): multi-select.js
+ * CoreUI PRO (v4.3.4): multi-select.js
  * License (https://coreui.io/pro/license-new/)
  * --------------------------------------------------------------------------
  */
 
-import {
-  defineJQueryPlugin,
-  typeCheckConfig
-} from './util/index'
+import { defineJQueryPlugin } from './util/index'
 import Data from './dom/data'
 import EventHandler from './dom/event-handler'
 import Manipulator from './dom/manipulator'
@@ -76,6 +73,7 @@ const CLASS_NAME_LABEL = 'label'
 
 const Default = {
   cleaner: true,
+  disabled: false,
   multiple: true,
   placeholder: 'Select...',
   options: false,
@@ -91,6 +89,7 @@ const Default = {
 
 const DefaultType = {
   cleaner: 'boolean',
+  disabled: 'boolean',
   multiple: 'boolean',
   placeholder: 'string',
   options: '(boolean|array)',
@@ -112,14 +111,13 @@ const DefaultType = {
 
 class MultiSelect extends BaseComponent {
   constructor(element, config) {
-    super(element)
+    super(element, config)
 
     this._selectAllElement = null
     this._selectionElement = null
     this._selectionCleanerElement = null
     this._searchElement = null
     this._optionsElement = null
-    this._config = this._getConfig(config)
     this._clone = null
     this._options = this._getOptions()
     this._search = ''
@@ -189,33 +187,33 @@ class MultiSelect extends BaseComponent {
   }
 
   selectAll(options = this._options) {
-    options.forEach(option => {
+    for (const option of options) {
       if (option.disabled) {
-        return
+        continue
       }
 
       if (option.label) {
         this.selectAll(option.options)
-        return
+        continue
       }
 
       this._selectOption(option.value, option.text)
-    })
+    }
   }
 
   deselectAll(options = this._options) {
-    options.forEach(option => {
+    for (const option of options) {
       if (option.disabled) {
-        return
+        continue
       }
 
       if (option.label) {
         this.deselectAll(option.options)
-        return
+        continue
       }
 
       this._deselectOption(option.value)
-    })
+    }
   }
 
   getValue() {
@@ -226,7 +224,9 @@ class MultiSelect extends BaseComponent {
 
   _addEventListeners() {
     EventHandler.on(this._clone, EVENT_CLICK, () => {
-      this.show()
+      if (!this._config.disabled) {
+        this.show()
+      }
     })
 
     EventHandler.on(this._searchElement, EVENT_KEYUP, () => {
@@ -254,9 +254,11 @@ class MultiSelect extends BaseComponent {
     })
 
     EventHandler.on(this._selectionCleanerElement, EVENT_CLICK, event => {
-      event.preventDefault()
-      event.stopPropagation()
-      this.deselectAll()
+      if (!this._config.disabled) {
+        event.preventDefault()
+        event.stopPropagation()
+        this.deselectAll()
+      }
     })
 
     EventHandler.on(this._optionsElement, EVENT_KEYDOWN, event => {
@@ -275,7 +277,7 @@ class MultiSelect extends BaseComponent {
       ...Manipulator.getDataAttributes(this._element),
       ...(typeof config === 'object' ? config : {})
     }
-    typeCheckConfig(NAME, config, DefaultType)
+
     return config
   }
 
@@ -291,7 +293,7 @@ class MultiSelect extends BaseComponent {
     const nodes = Array.from(node.childNodes).filter(element => element.nodeName === 'OPTION' || element.nodeName === 'OPTGROUP')
     const options = []
 
-    nodes.forEach(node => {
+    for (const node of nodes) {
       if (node.nodeName === 'OPTION') {
         options.push({
           value: node.value,
@@ -307,7 +309,7 @@ class MultiSelect extends BaseComponent {
           options: this._getOptions(node)
         })
       }
-    })
+    }
 
     return options
   }
@@ -315,10 +317,10 @@ class MultiSelect extends BaseComponent {
   _getSelectedOptions(options) {
     const selected = []
 
-    options.forEach(e => {
+    for (const e of options) {
       if (typeof e.value === 'undefined') {
         this._getSelectedOptions(e.options)
-        return
+        continue
       }
 
       if (e.selected) {
@@ -332,7 +334,7 @@ class MultiSelect extends BaseComponent {
           text: e.text
         })
       }
-    })
+    }
 
     return selected
   }
@@ -348,7 +350,7 @@ class MultiSelect extends BaseComponent {
   }
 
   _createNativeOptions(parentElement, options) {
-    options.forEach(option => {
+    for (const option of options) {
       if ((typeof option.options !== 'undefined')) {
         const optgroup = document.createElement('optgroup')
         optgroup.label = option.label
@@ -369,7 +371,7 @@ class MultiSelect extends BaseComponent {
         opt.innerHTML = option.text
         parentElement.append(opt)
       }
-    })
+    }
   }
 
   _hideNativeSelect() {
@@ -381,9 +383,13 @@ class MultiSelect extends BaseComponent {
     const div = document.createElement('div')
     div.classList.add(CLASS_NAME_SELECT)
 
-    this._getClassNames().forEach(className => {
+    if (this._config.disabled) {
+      this._element.classList.add(CLASS_NAME_DISABLED)
+    }
+
+    for (const className of this._getClassNames()) {
       div.classList.add(className)
-    })
+    }
 
     if (this._config.multiple) {
       div.classList.add(CLASS_NAME_SELECT_MULTIPLE)
@@ -401,6 +407,10 @@ class MultiSelect extends BaseComponent {
     if (this._config.search) {
       this._createSearchInput()
       this._updateSearch()
+    }
+
+    if (this._element.id) {
+      this._element.setAttribute('name', `multi-select-${this._element.id}`)
     }
 
     this._createOptionsContainer()
@@ -433,6 +443,10 @@ class MultiSelect extends BaseComponent {
   _createSearchInput() {
     const input = document.createElement('input')
     input.classList.add(CLASS_NAME_SEARCH)
+
+    if (this._config.disabled) {
+      input.disabled = true
+    }
 
     this._searchElement = input
     this._updateSearchSize()
@@ -471,7 +485,7 @@ class MultiSelect extends BaseComponent {
   }
 
   _createOptions(parentElement, options) {
-    options.forEach(option => {
+    for (const option of options) {
       if (typeof option.value !== 'undefined') {
         const optionDiv = document.createElement('div')
         optionDiv.classList.add(CLASS_NAME_OPTION)
@@ -502,7 +516,7 @@ class MultiSelect extends BaseComponent {
         this._createOptions(optgroup, option.options)
         parentElement.append(optgroup)
       }
-    })
+    }
   }
 
   _createTag(value, text) {
@@ -519,11 +533,13 @@ class MultiSelect extends BaseComponent {
     tag.append(closeBtn)
 
     EventHandler.on(closeBtn, EVENT_CLICK, event => {
-      event.preventDefault()
-      event.stopPropagation()
+      if (!this._config.disabled) {
+        event.preventDefault()
+        event.stopPropagation()
 
-      tag.remove()
-      this._deselectOption(value)
+        tag.remove()
+        this._deselectOption(value)
+      }
     })
 
     return tag
@@ -623,9 +639,10 @@ class MultiSelect extends BaseComponent {
 
     if (this._config.multiple && this._config.selectionType === 'tags') {
       selection.innerHTML = ''
-      this._selection.forEach(e => {
+      for (const e of this._selection) {
         selection.append(this._createTag(e.value, e.text))
-      })
+      }
+
       return
     }
 
@@ -707,16 +724,16 @@ class MultiSelect extends BaseComponent {
   }
 
   _updateOptionsList(options = this._options) {
-    options.forEach(option => {
+    for (const option of options) {
       if (option.label) {
         this._updateOptionsList(option.options)
-        return
+        continue
       }
 
       if (option.selected) {
         this._selectOption(option.value, option.text)
       }
-    })
+    }
   }
 
   _isVisible(element) {
@@ -728,7 +745,7 @@ class MultiSelect extends BaseComponent {
     const options = SelectorEngine.find(SELECTOR_OPTION, this._clone)
     let visibleOptions = 0
 
-    options.forEach(option => {
+    for (const option of options) {
       // eslint-disable-next-line unicorn/prefer-includes
       if (option.textContent.toLowerCase().indexOf(this._search) === -1) {
         option.style.display = 'none'
@@ -746,7 +763,7 @@ class MultiSelect extends BaseComponent {
           optgroup.style.display = 'none'
         }
       }
-    })
+    }
 
     if (visibleOptions > 0) {
       if (SelectorEngine.findOne(SELECTOR_OPTIONS_EMPTY, this._clone)) {
@@ -830,12 +847,11 @@ class MultiSelect extends BaseComponent {
  * ------------------------------------------------------------------------
  */
 EventHandler.on(window, EVENT_LOAD_DATA_API, () => {
-  SelectorEngine.find(SELECTOR_SELECT)
-    .forEach(ms => {
-      if (ms.tabIndex !== -1) {
-        MultiSelect.multiSelectInterface(ms)
-      }
-    })
+  for (const ms of SelectorEngine.find(SELECTOR_SELECT)) {
+    if (ms.tabIndex !== -1) {
+      MultiSelect.multiSelectInterface(ms)
+    }
+  }
 })
 
 EventHandler.on(document, EVENT_CLICK_DATA_API, MultiSelect.clearMenus)

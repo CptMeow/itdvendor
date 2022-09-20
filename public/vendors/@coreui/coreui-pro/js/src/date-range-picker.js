@@ -1,13 +1,13 @@
 /**
  * --------------------------------------------------------------------------
- * CoreUI PRO (v4.2.0): date-range-picker.js
+ * CoreUI PRO (v4.3.4): date-range-picker.js
  * License (https://coreui.io/pro/license-new/)
  * --------------------------------------------------------------------------
  */
 
 import { format as dateFormat, parseISO } from 'date-fns'
 
-import { defineJQueryPlugin, typeCheckConfig } from './util/index'
+import { defineJQueryPlugin } from './util/index'
 import EventHandler from './dom/event-handler'
 import Manipulator from './dom/manipulator'
 import SelectorEngine from './dom/selector-engine'
@@ -251,7 +251,7 @@ class DateRangePicker extends Picker {
   }
 
   _addCalendarEventListeners() {
-    SelectorEngine.find('.calendar', this._element).forEach(calendar => {
+    for (const calendar of SelectorEngine.find('.calendar', this._element)) {
       EventHandler.on(calendar, 'startDateChange.coreui.calendar', event => {
         this._startDate = event.date
         this._selectEndDate = event.selectEndDate
@@ -292,14 +292,14 @@ class DateRangePicker extends Picker {
 
         this._startInput.value = event.date ? this._formatDate(event.date) : ''
       })
-    })
+    }
   }
 
   _convertStringToDate(date) {
     return date ? (date instanceof Date ? date : new Date(date)) : null
   }
 
-  _createInput(placeholder, value) {
+  _createInput(name, placeholder, value) {
     const inputEl = document.createElement('input')
     inputEl.classList.add('form-control')
     inputEl.disabled = this._config.disabled
@@ -307,6 +307,10 @@ class DateRangePicker extends Picker {
     inputEl.readOnly = this._config.inputReadOnly || typeof this._config.format === 'string'
     inputEl.type = 'text'
     inputEl.value = value
+
+    if (this._element.id) {
+      inputEl.name = `${name}-${this._element.id}`
+    }
 
     return inputEl
   }
@@ -319,8 +323,8 @@ class DateRangePicker extends Picker {
       inputGroupEl.classList.add(`input-group-${this._config.size}`)
     }
 
-    const startInputEl = this._createInput(this._getPlaceholder()[0], this._setInputValue(this._startDate))
-    const endInputEl = this._createInput(this._getPlaceholder()[1], this._setInputValue(this._endDate))
+    const startInputEl = this._createInput(this._config.range ? 'date-range-picker-start-date' : 'date-picker', this._getPlaceholder()[0], this._setInputValue(this._startDate))
+    const endInputEl = this._createInput('date-range-picker-end-date', this._getPlaceholder()[1], this._setInputValue(this._endDate))
 
     const inputGroupTextSeparatorEl = document.createElement('span')
     inputGroupTextSeparatorEl.classList.add('input-group-text')
@@ -436,7 +440,8 @@ class DateRangePicker extends Picker {
           this._updateCalendars()
         })
       } else {
-        Array.from({ length: this._config.calendars }).forEach((_, index) => {
+        // eslint-disable-next-line no-unused-vars
+        for (const [index, _] of Array.from({ length: this._config.calendars }).entries()) {
           const timePickerEl = document.createElement('div')
           timePickerEl.classList.add('time-picker')
 
@@ -462,7 +467,7 @@ class DateRangePicker extends Picker {
 
             this._updateCalendars()
           })
-        })
+        }
       }
     }
   }
@@ -481,7 +486,7 @@ class DateRangePicker extends Picker {
       const dateRangePickerRangesEl = document.createElement('div')
       dateRangePickerRangesEl.classList.add('date-picker-ranges')
 
-      Object.keys(this._config.ranges).forEach(key => {
+      for (const key of Object.keys(this._config.ranges)) {
         const buttonEl = document.createElement('button')
         buttonEl.classList.add(...this._getButtonClasses(this._config.rangesButtonsClasses))
         buttonEl.role = 'button'
@@ -495,7 +500,7 @@ class DateRangePicker extends Picker {
 
         buttonEl.innerHTML = key
         dateRangePickerRangesEl.append(buttonEl)
-      })
+      }
 
       dateRangePickerBodyEl.append(dateRangePickerRangesEl)
     }
@@ -575,7 +580,6 @@ class DateRangePicker extends Picker {
       ...(typeof config === 'object' ? config : {})
     }
 
-    typeCheckConfig(NAME, config, DefaultType)
     return config
   }
 

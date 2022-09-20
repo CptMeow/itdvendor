@@ -1,11 +1,10 @@
 /**
  * --------------------------------------------------------------------------
- * CoreUI PRO (v4.2.0): picker.js
+ * CoreUI PRO (v4.3.4): picker.js
  * License (https://coreui.io/pro/license-new/)
  * --------------------------------------------------------------------------
  */
 
-import { typeCheckConfig } from './util/index'
 import EventHandler from './dom/event-handler'
 import Manipulator from './dom/manipulator'
 import BaseComponent from './base-component'
@@ -166,7 +165,6 @@ class Picker extends BaseComponent {
       ...(typeof config === 'object' ? config : {})
     }
 
-    typeCheckConfig(NAME, config, DefaultType)
     return config
   }
 }
