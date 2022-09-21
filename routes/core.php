@@ -66,6 +66,8 @@ Route::group(['prefix' => 'admin','as'=>'admin.', 'middleware' => ['role:admin',
         //Route::get('/show',     [MenuController::class, 'show'])->name('menu.menu.show');
         Route::get('/delete',   [MenuController::class, 'delete'])->name('menu.menu.delete');
     });
+    Route::get('/locale',         [LocaleController::class, 'locale'])->name('locale');
+    
 });
 
 /*
