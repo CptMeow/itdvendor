@@ -8,11 +8,11 @@
                 <div class="card-header ">
                   <div class="row">
                     <div class="col-6 text-start">
-                      <h4>{{ __('Procurement list') }}</h4>
+                      <h4>{{ __('Vendor list') }}</h4>
                     </div>
                     <div class="col-6 text-end">
-                      <x-button link="{{ route('procurement.create') }}" class="btn-success">
-                        {{ __('เพิ่มข้อมูลจัดซื้อจัดจ้าง') }}
+                      <x-button link="{{ route('vendor.create') }}" class="btn-success">
+                        {{ __('เพิ่มข้อมูลคู่ค้า') }}
                       </x-button>
                     </div>
                   </div>
@@ -21,30 +21,28 @@
                     <table class="table table-responsive-sm table-striped">
                     <thead>
                       <tr>
-                        <th>{{ __('FMIS REF') }}</th>
-                        <th>{{ __('ปีงบประมาณ') }}</th>
-                        <th>{{ __('วันที่จัดซื้อ') }}</th>
-                        <th>{{ __('มูลค่า') }}</th>
+                        <th>{{ __('no') }}</th>
+                        <th>{{ __('ชื่อบริษัท/นิติบุคคล') }}</th>
+                        <th>{{ __('เลขนิติบุคคล') }}</th>
                         <th></th>
                         <th></th>
                         <th></th>
                       </tr>
                     </thead>
                     <tbody>
-                      @foreach($procurements as $procurement)
+                      @foreach($vendors as $vendor)
                         <tr>
-                          <td>{{ $procurement->fmis_ref_no }}</td>
-                          <td>{{ $procurement->fiscal_year }}</td>
-                          <td>{{ $procurement->purchase_date }}</td>
-                          <td>{{ $procurement->amont }}</td>
+                          <td>{{ $vendor->vendor_id }}</td>
+                          <td>{{ $vendor->juristic_name_th }}</td>
+                          <td>{{ $vendor->juristic_id }}</td>
                           <td>
-                            <x-button link="{{ route('procurement.show', $procurement->procurement_id) }}" class="btn btn-block btn-primary">{{ __('coreuiforms.view') }}</x-button>
+                            <x-button link="{{ route('vendor.show', $vendor->vendor_id) }}" class="btn btn-block btn-primary">{{ __('coreuiforms.view') }}</x-button>
                           </td>
                           <td>
-                            <x-button link="{{ route('procurement.edit', $procurement->procurement_id ) }}" class="btn btn-block btn-primary">{{ __('coreuiforms.edit') }}</x-button>
+                            <x-button link="{{ route('vendor.edit', $vendor->vendor_id ) }}" class="btn btn-block btn-primary">{{ __('coreuiforms.edit') }}</x-button>
                           </td>
                           <td>
-                            <form action="{{ route('procurement.destroy', $procurement->procurement_id ) }}" method="POST">
+                            <form action="{{ route('vendor.destroy', $vendor->vendor_id ) }}" method="POST">
                                 @method('DELETE')
                                 @csrf
                                 <button class="btn btn-block btn-danger">{{ __('coreuiforms.delete') }}</button>

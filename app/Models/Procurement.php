@@ -17,7 +17,7 @@ class Procurement extends Model
         'description',
         'purchase_date',
         'chart_of_account_id',
-        'value',
+        'amount',
         'fiscal_year',
     
     ];

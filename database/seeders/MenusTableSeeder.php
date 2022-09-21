@@ -176,6 +176,22 @@ class MenusTableSeeder extends Seeder
         $id = $this->insertLink('guest,user,admin', 'Dashboard', '/', 'cil-speedometer');
         $this->addTranslation('th', 'Dashboard', $id);
 
+        $id = $this->beginDropdown('user,admin', 'Procurement', 'cil-newspaper');
+        $this->addTranslation('th', 'ข้อมูลจัดซื้อจังจ้าง', $id);
+        $id = $this->insertLink('user,admin', 'Procurement', route("procurement.index", [], false));
+        $this->addTranslation('th', 'ข้อมูลจัดซื้อจังจ้าง', $id);
+        $id = $this->insertLink('user,admin', 'Add Procurement', route("procurement.create", [], false));
+        $this->addTranslation('th', 'เพิ่มข้อมูลจัดซื้อจังจ้าง', $id);
+        $this->endDropdown();
+        
+        $id = $this->beginDropdown('user,admin', 'Vendor', 'cil-briefcase');
+        $this->addTranslation('th', 'ข้อมูลนิติบุคคล', $id);
+        $id = $this->insertLink('user,admin', 'Vendor', route("vendor.index", [], false));
+        $this->addTranslation('th', 'ข้อมูลนิติบุคคล', $id);
+        $id = $this->insertLink('user,admin', 'Add Vendor', route("vendor.create", [], false));
+        $this->addTranslation('th', 'เพิ่มข้อมูลนิติบุคคล', $id);
+        $this->endDropdown();
+
         // $id = $this->insertLink('guest', 'Login', '/login', 'cil-account-logout');
         // $this->addTranslation('th', 'Logowanie', $id);
         // $id = $this->insertLink('guest', 'Register', '/register', 'cil-account-logout');

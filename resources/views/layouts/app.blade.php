@@ -40,7 +40,7 @@
   <!-- Main styles for this application-->
   <link href="{{ asset('css/style.css') }}" rel="stylesheet">
   <!-- We use those styles to show code examples, you should remove them in your application.-->
-  <link href="{{ asset('css/examples.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
   <!--CSS PAGE-->
   {{ $css }}
 </head>
