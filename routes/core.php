@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Core\LanguageController;
+use App\Http\Controllers\Core\LocaleController;
 use App\Http\Controllers\Core\MenuController;
 use App\Http\Controllers\Core\MenuElementController;
 use App\Http\Controllers\Core\RolesController;
