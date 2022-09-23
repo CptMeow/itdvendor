@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Menulist;
 use App\Models\Menus;
 use Illuminate\Validation\Rule;
+use Vinkla\Hashids\Facades\Hashids;
 
 use App\Models\Procurement;
 
@@ -24,7 +25,7 @@ class ProcurementController extends Controller
 
     public function index(Request $request){
 
-        $procurements = Procurement::get();
+        $procurements = Procurement::orderBy('purchase_date','desc')->paginate(15);
 
         return view('app.procurement.index', compact('procurements'));
     }

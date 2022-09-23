@@ -21,7 +21,7 @@
                     <table class="table table-responsive-sm table-striped">
                     <thead>
                       <tr>
-                        <th>{{ __('no') }}</th>
+                        <th>{{ __('ประเภท') }}</th>
                         <th>{{ __('ชื่อบริษัท/นิติบุคคล') }}</th>
                         <th>{{ __('เลขนิติบุคคล') }}</th>
                         <th></th>
@@ -32,26 +32,29 @@
                     <tbody>
                       @foreach($vendors as $vendor)
                         <tr>
-                          <td>{{ $vendor->vendor_id }}</td>
+                          <td>{{ $vendor->juristic_type }}</td>
                           <td>{{ $vendor->juristic_name_th }}</td>
                           <td>{{ $vendor->juristic_id }}</td>
                           <td>
-                            <x-button link="{{ route('vendor.show', $vendor->vendor_id) }}" class="btn btn-block btn-primary">{{ __('coreuiforms.view') }}</x-button>
+                            <x-button link="{{ route('vendor.show', $vendor->getHashids()) }}" class="btn btn-block btn-primary">{{ __('coreuiforms.view') }}</x-button>
                           </td>
                           <td>
-                            <x-button link="{{ route('vendor.edit', $vendor->vendor_id ) }}" class="btn btn-block btn-primary">{{ __('coreuiforms.edit') }}</x-button>
+                            <x-button link="{{ route('vendor.edit', $vendor->getHashids()) }}" class="btn btn-block btn-primary">{{ __('coreuiforms.edit') }}</x-button>
                           </td>
                           <td>
-                            <form action="{{ route('vendor.destroy', $vendor->vendor_id ) }}" method="POST">
+                            <form action="{{ route('vendor.destroy', $vendor->getHashids()) }}" method="POST">
                                 @method('DELETE')
                                 @csrf
-                                <button class="btn btn-block btn-danger">{{ __('coreuiforms.delete') }}</button>
+                                <button class="btn btn-block btn-danger text-white">{{ __('coreuiforms.delete') }}</button>
                             </form>
                           </td>
                         </tr>
                       @endforeach
                     </tbody>
                   </table>
+                  <div>
+                    {{ $vendors->links() }}
+                  </div>
                 </div>
             </div>
           </div>

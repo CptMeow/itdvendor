@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Vinkla\Hashids\Facades\Hashids;
 
 /**
  * @property int    $vendor_id
@@ -90,4 +91,8 @@ class Vendor extends Model
     // Functions ...
 
     // Relations ...
+    public function getHashids()
+    {
+        return Hashids::encode($this->getKey());
+    }
 }

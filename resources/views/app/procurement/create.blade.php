@@ -43,7 +43,13 @@
                   </div>
                   <div class="col-md-6">
                     <label for="fiscal_year" class="form-label">{{ __('ปีงบประมาณ') }}</label>
-                    <input type="text" class="form-control" id="fiscal_year" name="fiscal_year" maxlength="4" pattern="[0-9]{4}" required>
+                    {{-- <input type="text" class="form-control" id="fiscal_year" name="fiscal_year" maxlength="4" pattern="[0-9]{4}" required> --}}
+                    <select class="form-select select2-component" id="fiscal_year" name="fiscal_year" required>
+                      <option value="" selected>- เลือกปีงบประมาณ -</option>
+                      @foreach(Helper::BuildFiscalYear(2560) as $year)
+                        <option value="{{ $year['id'] }}">{{ $year['text'] }}</option>
+                      @endforeach
+                    </select>
                   </div>
                   <div class="col-md-6">
                     <label for="purchase_date" class="form-label">{{ __('วันที่จัดซื้อ') }}</label> <span class="text-danger">*</span>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Vendor;
 use Illuminate\Http\Request;
+use Vinkla\Hashids\Facades\Hashids;
 
 class VendorController extends Controller
 {
@@ -19,7 +20,7 @@ class VendorController extends Controller
 
     public function index(Request $request)
     {
-        $vendors = Vendor::all();
+        $vendors = Vendor::paginate(15);
         return view('app.vendor.index', compact('vendors'));
     }
 
@@ -45,7 +46,7 @@ class VendorController extends Controller
         // dd($request);
         $vendor = new Vendor;
 
-        if($request->input('register_capital')== 1) {
+        if($request->input('juristic_type')== 1) {
             $request->validate([
                 'juristic_id'      => 'required|min:13|max:13',
                 // 'juristic_type'    => 'required',
@@ -128,6 +129,7 @@ class VendorController extends Controller
      */
     public function show($id)
     {
+        $id = Hashids::decode($id)[0];
         $vendor = Vendor::find($id);
         return view('app.vendor.show', compact('vendor'));
     }
@@ -139,6 +141,7 @@ class VendorController extends Controller
      */
     public function edit($id)
     {
+        $id = Hashids::decode($id)[0];
         $vendor = Vendor::find($id);
         return view('app.vendor.edit', compact('vendor'));
     }
@@ -152,7 +155,7 @@ class VendorController extends Controller
      */
     public function update(Request $request, $id)
     {
-
+        $id = Hashids::decode($id)[0];
         $vendor = Vendor::find($id);
         if($request->input('register_capital')== 1) {
             $request->validate([
@@ -236,6 +239,7 @@ class VendorController extends Controller
      */
     public function destroy($id)
     {
+        $id = Hashids::decode($id)[0];
         $user = Vendor::find($id);
         if($user){
             $user->delete();

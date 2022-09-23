@@ -84,6 +84,20 @@ class Helper {
         return $output;
     }
 
+    public static function BuildFiscalYear($start_year = null, $end_year = null)
+    {
+        $end_year = $end_year??date('Y')+543;
+        $years = [];
+        for($i = $start_year;$i<= $end_year;$i++) {
+            $years[] = [
+                'id' => $i,
+                'text' => $i
+            ];
+        }
+        rsort($years);
+        return $years ;
+    }
+
     public static function ChartOfAccounts($chart_of_account_id = null)
     {
         $chart_of_accounts = [

@@ -185,7 +185,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        Vinkla\Hashids\HashidsServiceProvider::class,
         /*
          * Application Service Providers...
          */

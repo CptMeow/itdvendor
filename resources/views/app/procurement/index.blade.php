@@ -22,7 +22,8 @@
                     <thead>
                       <tr>
                         <th>{{ __('FMIS REF') }}</th>
-                        <th>{{ __('ปีงบประมาณ') }}</th>
+                        <th>{{ __('รายละเอียด') }}</th>
+                        {{-- <th>{{ __('ปีงบประมาณ') }}</th> --}}
                         <th>{{ __('วันที่จัดซื้อ') }}</th>
                         <th>{{ __('มูลค่า') }}</th>
                         <th></th>
@@ -33,18 +34,23 @@
                     <tbody>
                       @foreach($procurements as $procurement)
                         <tr>
-                          <td>{{ $procurement->fmis_ref_no }}</td>
-                          <td>{{ $procurement->fiscal_year }}</td>
-                          <td>{{ $procurement->purchase_date }}</td>
-                          <td>{{ $procurement->amont }}</td>
+                          <td><span class="badge bg-primary">{{ $procurement->fmis_ref_no }}</span></td>
                           <td>
-                            <x-button link="{{ route('procurement.show', $procurement->procurement_id) }}" class="btn btn-block btn-primary">{{ __('coreuiforms.view') }}</x-button>
+                            <div>{{ $procurement->description }}</div>
+                            <span class="badge bg-info">{{ $procurement->fiscal_year }}</span>
+                            <span class="badge bg-success">{{ Helper::Department($procurement->temp_department_id) }}</span>
+                          </td>
+                          {{-- <td>{{ $procurement->fiscal_year }}</td> --}}
+                          <td>{{ date_format($procurement->purchase_date, "d/m/Y") }}</td>
+                          <td>{{ number_format($procurement->amount, 2) }}</td>
+                          <td>
+                            <x-button link="{{ route('procurement.show', $procurement->getHashids()) }}" class="btn btn-block btn-primary">{{ __('coreuiforms.view') }}</x-button>
                           </td>
                           <td>
-                            <x-button link="{{ route('procurement.edit', $procurement->procurement_id ) }}" class="btn btn-block btn-primary">{{ __('coreuiforms.edit') }}</x-button>
+                            <x-button link="{{ route('procurement.edit', $procurement->getHashids() ) }}" class="btn btn-block btn-primary">{{ __('coreuiforms.edit') }}</x-button>
                           </td>
                           <td>
-                            <form action="{{ route('procurement.destroy', $procurement->procurement_id ) }}" method="POST">
+                            <form action="{{ route('procurement.destroy', $procurement->getHashids() ) }}" method="POST">
                                 @method('DELETE')
                                 @csrf
                                 <button class="btn btn-block btn-danger">{{ __('coreuiforms.delete') }}</button>
@@ -54,6 +60,9 @@
                       @endforeach
                     </tbody>
                   </table>
+                  <div>
+                    {{ $procurements->links() }}
+                  </div>
                 </div>
             </div>
           </div>

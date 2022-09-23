@@ -20,8 +20,8 @@ class CreateVendorsTable extends Migration
             $table->string('juristic_name_th')->comment('ชื่อนิติบุคคล (ภาษาไทย)');
             $table->string('juristic_name_en')->nullable()->comment('ชื่อนิติบุคคล (ภาษาอังกฤษ)');
             $table->string('juristic_status')->nullable()->comment('สถานะนิติบุคคล');
-            $table->string('standard_id', 10)->comment('รหัสหมวดหมู่ tsic');
-            $table->date('register_date')->comment('วันที่จดทะเบียน');
+            $table->string('standard_id', 10)->nullable()->comment('รหัสหมวดหมู่ tsic');
+            $table->date('register_date')->nullable()->comment('วันที่จดทะเบียน');
             $table->bigInteger('register_capital')->nullable()->comment('ทุนจดทะเบียน');
             $table->string('address', 250)->nullable()->comment('ที่ตั้งนิติบุคคล (ภาษาไทย)');
             $table->integer('sub_district_id')->nullable()->comment('รหัสตำบล/แขวง');

@@ -17,10 +17,11 @@ class VendorController extends Controller
      */
     public function lists(Request $request)
     {
-        $vendor = Vendor::select('juristic_id as id', 'juristic_name_th as text');
+        $vendor = Vendor::select('vendor_id as id', 'juristic_name_th as text');
 
         if($request->input('q')){
-            $vendor = $vendor->where('juristic_name_th', 'like', '%'.$request->input('q').'%');
+            $vendor = $vendor->where('juristic_name_th', 'like', '%'.$request->input('q').'%')
+            ->orwhere('juristic_id', 'like', '%'.$request->input('q').'%');
         }
 
         $vendor = $vendor->orderBy('juristic_name_th')->limit(10)->get();

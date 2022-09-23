@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Vinkla\Hashids\Facades\Hashids;
 
 class Procurement extends Model
 {
@@ -35,8 +36,8 @@ class Procurement extends Model
 
     /* ************************ ACCESSOR ************************* */
 
-    public function getResourceUrlAttribute()
+    public function getHashids()
     {
-        return url('/admin/procurements/'.$this->getKey());
+        return Hashids::encode($this->getKey());
     }
 }
