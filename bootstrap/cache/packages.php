@@ -27,6 +27,18 @@
       0 => 'Laravel\\Tinker\\TinkerServiceProvider',
     ),
   ),
+  'laravelcollective/html' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Collective\\Html\\HtmlServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Form' => 'Collective\\Html\\FormFacade',
+      'Html' => 'Collective\\Html\\HtmlFacade',
+    ),
+  ),
   'nesbot/carbon' => 
   array (
     'providers' => 
@@ -82,6 +94,45 @@
     'providers' => 
     array (
       0 => 'Vinkla\\Hashids\\HashidsServiceProvider',
+    ),
+  ),
+  'yajra/laravel-datatables-buttons' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Yajra\\DataTables\\ButtonsServiceProvider',
+    ),
+  ),
+  'yajra/laravel-datatables-editor' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Yajra\\DataTables\\EditorServiceProvider',
+    ),
+  ),
+  'yajra/laravel-datatables-fractal' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Yajra\\DataTables\\FractalServiceProvider',
+    ),
+  ),
+  'yajra/laravel-datatables-html' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Yajra\\DataTables\\HtmlServiceProvider',
+    ),
+  ),
+  'yajra/laravel-datatables-oracle' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Yajra\\DataTables\\DataTablesServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'DataTables' => 'Yajra\\DataTables\\Facades\\DataTables',
     ),
   ),
 );

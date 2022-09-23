@@ -186,6 +186,7 @@ return [
          * Package Service Providers...
          */
         Vinkla\Hashids\HashidsServiceProvider::class,
+        Yajra\DataTables\DataTablesServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -211,6 +212,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'Helper' => App\Libraries\Helper::class,
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
     ])->toArray(),
 
 ];

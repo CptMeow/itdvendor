@@ -18,51 +18,18 @@
                   </div>
                 </div>
                 <div class="card-body">
-                    <table class="table table-responsive-sm table-striped">
+                    <table class="table table-responsive-sm table-striped" id="datatables">
                     <thead>
                       <tr>
+                        <th></th>
                         <th>{{ __('FMIS REF') }}</th>
                         <th>{{ __('รายละเอียด') }}</th>
-                        {{-- <th>{{ __('ปีงบประมาณ') }}</th> --}}
                         <th>{{ __('วันที่จัดซื้อ') }}</th>
                         <th>{{ __('มูลค่า') }}</th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
+                        <th>Action</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      @foreach($procurements as $procurement)
-                        <tr>
-                          <td><span class="badge bg-primary">{{ $procurement->fmis_ref_no }}</span></td>
-                          <td>
-                            <div>{{ $procurement->description }}</div>
-                            <span class="badge bg-info">{{ $procurement->fiscal_year }}</span>
-                            <span class="badge bg-success">{{ Helper::Department($procurement->temp_department_id) }}</span>
-                          </td>
-                          {{-- <td>{{ $procurement->fiscal_year }}</td> --}}
-                          <td>{{ date_format($procurement->purchase_date, "d/m/Y") }}</td>
-                          <td>{{ number_format($procurement->amount, 2) }}</td>
-                          <td>
-                            <x-button link="{{ route('procurement.show', $procurement->getHashids()) }}" class="btn btn-block btn-primary">{{ __('coreuiforms.view') }}</x-button>
-                          </td>
-                          <td>
-                            <x-button link="{{ route('procurement.edit', $procurement->getHashids() ) }}" class="btn btn-block btn-primary">{{ __('coreuiforms.edit') }}</x-button>
-                          </td>
-                          <td>
-                            <form action="{{ route('procurement.destroy', $procurement->getHashids() ) }}" method="POST">
-                                @method('DELETE')
-                                @csrf
-                                <button class="btn btn-block btn-danger">{{ __('coreuiforms.delete') }}</button>
-                            </form>
-                          </td>
-                        </tr>
-                      @endforeach
-                    </tbody>
                   </table>
-                  <div>
-                    {{ $procurements->links() }}
-                  </div>
                 </div>
             </div>
           </div>
@@ -70,4 +37,75 @@
       </div>
     </div>
   </x-slot:content>
+  <x-slot:css>
+    <link href="{{ asset('vendors/DataTables/datatables.css') }}" rel="stylesheet"/>
+  </x-slot:css>
+  <x-slot:javascript>
+    <script src="{{ asset('vendors/DataTables/datatables.min.js') }}"></script>
+    <script>
+      $(document).ready( function () {
+        var token = $('meta[name="csrf-token"]').attr('content');
+        var modal = $('.modal')
+        var form = $('.form')
+        var btnAdd = $('.add'),
+            btnSave = $('.btn-save'),
+            btnUpdate = $('.btn-update');
+        var table = $('#datatables').DataTable({
+          processing: true,
+          serverSide: true,
+          ajax: "{{ route('procurement.index') }}",
+          columns: [
+              { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
+              { data: 'fmis_ref_no_output'},
+              { data: 'description_output' },
+              { data: 'purchase_date_output', orderable: true, searchable: false },
+              { data: 'amount_output' },
+              { data: 'action', orderable: false, searchable: false }
+          ]
+        });
+
+        btnUpdate.click(function(){
+            if(!confirm("Are you sure?")) return;
+            var formData = form.serialize()+'&_method=PUT&_token='+token
+            var updateId = form.find('input[name="id"]').val()
+            $.ajax({
+                type: "POST",
+                url: "/" + updateId,
+                data: formData,
+                success: function (data) {
+                    if (data.success) {
+                        table.draw();
+                        modal.modal('hide');
+                    }
+                }
+             }); //end ajax
+        })
+            
+
+        $(document).on('click','.btn-delete',function(){
+            if(!confirm("Are you sure?")) return;
+
+            var rowid = $(this).data('rowid')
+            var el = $(this)
+            if(!rowid) return;
+
+            
+            $.ajax({
+                type: "POST",
+                dataType: 'JSON',
+                url: "{{ url("procurement") }}/" + rowid,
+                data: {_method: 'delete',_token:token},
+                success: function (data) {
+                    if (data.success) {
+                        table.row(el.parents('tr'))
+                            .remove()
+                            .draw();
+                    }
+                }
+             }); //end ajax
+        })
+        
+      });
+    </script>
+  </x-slot:javascript>
 </x-app-layout>

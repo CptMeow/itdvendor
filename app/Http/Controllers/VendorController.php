@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Vendor;
+use App\Libraries\Helper;
 use Illuminate\Http\Request;
 use Vinkla\Hashids\Facades\Hashids;
 
@@ -20,8 +21,25 @@ class VendorController extends Controller
 
     public function index(Request $request)
     {
-        $vendors = Vendor::paginate(15);
-        return view('app.vendor.index', compact('vendors'));
+        if ($request->ajax()) {
+            $records = Vendor::orderBy('juristic_name_th', 'asc')
+                ->get();
+
+            return datatables()->of($records)
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+                    $html = '<div class="btn-group" role="group" aria-label="Basic mixed styles example">';
+                    $html .= '<a href="'.route('vendor.show', $row->getHashids()).'" class="btn btn-success">'.__('ดู').'</a>';
+                    $html .= '<a href="'.route('vendor.edit', $row->getHashids()).'" class="btn btn-warning btn-edit">'.__('แก้ไข').'</a>';
+                    $html .= '<button data-rowid="' . $row->getHashids() . '" class="btn btn-danger btn-delete">'.__('ลบ').'</button>';
+                    $html .= '</div>';
+                    
+                    return $html;
+                })
+                ->toJson();
+        }
+
+        return view('app.vendor.index');
     }
 
     /**
@@ -240,9 +258,9 @@ class VendorController extends Controller
     public function destroy($id)
     {
         $id = Hashids::decode($id)[0];
-        $user = Vendor::find($id);
-        if($user){
-            $user->delete();
+        $vendor = Vendor::find($id);
+        if($vendor){
+            $vendor->delete();
         }
         return redirect()->route('vendor.index');
     }

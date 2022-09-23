@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Menulist;
 use App\Models\Menus;
+use App\Libraries\Helper;
 use Illuminate\Validation\Rule;
 use Vinkla\Hashids\Facades\Hashids;
 
@@ -25,9 +26,56 @@ class ProcurementController extends Controller
 
     public function index(Request $request){
 
-        $procurements = Procurement::orderBy('purchase_date','desc')->paginate(15);
+        //$procurements = Procurement::orderBy('purchase_date','desc')->get();
 
-        return view('app.procurement.index', compact('procurements'));
+        
+        if ($request->ajax()) {
+            $records = Procurement::orderBy('purchase_date', 'desc')
+                ->leftJoin('vendors', 'juristic_id', 'temp_vendor_id')    
+                ->get();
+
+            return datatables()->of($records)
+                ->addIndexColumn()
+                ->addColumn('fmis_ref_no_output', function ($row) {
+                    $html = '<span class="badge bg-warning">'.$row->fmis_ref_no.'</span> ';
+                    return $html;
+                })
+                ->addColumn('description_output', function ($row) {
+                    $html = '<div>'.$row->description.'</div> ';
+                    $html .= '<span class="badge bg-success">'.$row->fiscal_year.'</span> ';
+                    $html .= '<span class="badge bg-info">'.Helper::Department($row->temp_department_id).'</span> ';
+                    $html .= '<span class="badge bg-dark">['.$row->temp_vendor_id.'] '.$row->juristic_name_th.'</span> ';
+                    return $html;
+                })
+                ->addColumn('fiscal_year_output', function ($row) {
+                    $html = '<span class="badge bg-warning">'.$row->fmis_ref_no.'</span> ';
+                    return $html;
+                })
+                ->addColumn('purchase_date_output', function ($row) {
+                    return date_format($row->purchase_date, 'd/m/Y');
+                })
+                ->addColumn('amount_output', function ($row) {
+                    return number_format($row->amount, 2);
+                })
+                ->addColumn('action', function ($row) {
+                    $html = '<div class="btn-group" role="group" aria-label="Basic mixed styles example">';
+                    $html .= '<a href="'.route('procurement.show', $row->getHashids()).'" class="btn btn-success">'.__('ดู').'</a>';
+                    $html .= '<a href="button" class="btn btn-warning btn-edit">'.__('แก้ไข').'</a>';
+                    $html .= '<button data-rowid="' . $row->getHashids() . '" class="btn btn-danger btn-delete">'.__('ลบ').'</button>';
+                    $html .= '</div>';
+                    
+                    return $html;
+                })
+                ->rawColumns([
+                    'fmis_ref_no_output',
+                    'description_output',
+                    'amount_output', 
+                    'action'
+                ])
+                ->toJson();
+        }
+
+        return view('app.procurement.index');
     }
 
     /**
@@ -71,6 +119,14 @@ class ProcurementController extends Controller
         if ($vendor->save()) {
             return redirect()->route('vendor.index');
         }
+    }
+
+    
+    public function destroy($id)
+    {
+        $id = Hashids::decode($id)[0];
+        Procurement::find($id)->delete();
+        return ['success' => true, 'message' => 'Deleted Procurement Successfully'];
     }
 
 }

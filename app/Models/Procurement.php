@@ -32,7 +32,7 @@ class Procurement extends Model
     
     ];
     
-    protected $appends = ['resource_url'];
+    // protected $appends = ['resource_url'];
 
     /* ************************ ACCESSOR ************************* */
 

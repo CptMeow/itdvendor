@@ -167,7 +167,15 @@ class Helper {
 
         ];
 
-        return $chart_of_account_id ? $chart_of_accounts[$chart_of_account_id]:$chart_of_accounts;
+        if($chart_of_account_id && array_key_exists($chart_of_account_id, $chart_of_accounts)) {
+            return $chart_of_accounts[$chart_of_account_id];
+        }
+        elseif(!$chart_of_account_id) {
+            return $chart_of_accounts;
+        }
+        else {
+            return 'Unknown';
+        }
     }
 
     public static function Department($department_id = null)
@@ -205,8 +213,16 @@ class Helper {
             "263" => "สำนักขับเคลื่อนการพัฒนา",
             "27" => "สำนักกฎหมาย",
         ];
-
-        return $department_id ? $departments[$department_id]:$departments;
+        
+        if($department_id && array_key_exists($department_id, $departments)) {
+            return $departments[$department_id];
+        }
+        elseif(!$department_id) {
+            return $departments;
+        }
+        else {
+            return 'Unknown';
+        }
     }
 
     public static function DataSubjectCid($cid)

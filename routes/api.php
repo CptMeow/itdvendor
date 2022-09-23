@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AddressController;
+use App\Http\Controllers\Api\ProcurementController;
 use App\Http\Controllers\Api\VendorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('vendor')->middleware('auth:sanctum')->group(function () {
     Route::get('/lists', [VendorController::class, 'lists'])->name('juristic.lists');
+    Route::get('/checkexist/{id}', [VendorController::class, 'checkexists'])->name('juristic.checkexist');
+});
+
+Route::prefix('procurement')->middleware('auth:sanctum')->group(function () {
+    Route::get('/lists', [ProcurementController::class, 'lists'])->name('procurement.lists');
     Route::get('/checkexist/{id}', [VendorController::class, 'checkexists'])->name('juristic.checkexist');
 });
 
