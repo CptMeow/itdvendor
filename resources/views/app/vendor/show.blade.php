@@ -6,12 +6,20 @@
           <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <div class="card">
               <div class="card-header">
-                <div class="col-6">
-                  <h4>
-                    <i class="cil-building me-2"></i>{{ $vendor->juristic_name_th }}
-                  </h4>
+                <div class="row">
+                  <div class="col-6">
+                    <h4>
+                      <i class="cil-building me-2"></i>{{ $vendor->juristic_name_th }}
+                    </h4>
+                  </div>
+                  <div class="col-6 text-end">
+                    <a href="{{ route('vendor.edit', $vendor->getHashids()) }}" class="btn btn-warning btn-edit text-white">
+                      <svg class="icon">
+                        <use xlink:href=" {{ asset('vendors/@coreui/icons/sprites/free.svg#cil-pencil') }}"></use>
+                      </svg>
+                    </a>
+                  </div>
                 </div>
-                <div class="col-6"></div>
               </div>
               <div class="card-body">
                 <div class="row my-1">
@@ -130,25 +138,41 @@
     </div>
   </x-slot:content>
   <x-slot:css>
-    <link href="{{ asset('vendors/DataTables/datatables.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('vendors/DataTables/datatables.css') }}" rel="stylesheet" />
   </x-slot:css>
   <x-slot:javascript>
     <script src="{{ asset('vendors/DataTables/datatables.min.js') }}"></script>
     <script>
-      $(document).ready( function () {
+      $(document).ready(function() {
         var table = $('#datatables').DataTable({
           processing: true,
           serverSide: true,
           responsive: true,
-          ajax: "{{ route('vendor.show',$vendor->gethashids()) }}",
-          columns: [
-              { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false, width: '5%' },
-              { data: 'fmis_ref_no', width: '5%'},
-              // { data: 'fiscal_year' },
-              // { data: 'account_name' },
-              { data: 'description_output'},
-              { data: 'amount_output' },
-              { data: 'action', orderable: false, searchable: false },
+          ajax: "{{ route('vendor.show', $vendor->gethashids()) }}",
+          columns: [{
+              data: 'DT_RowIndex',
+              name: 'DT_RowIndex',
+              orderable: false,
+              searchable: false,
+              width: '5%'
+            },
+            {
+              data: 'fmis_ref_no',
+              width: '5%'
+            },
+            // { data: 'fiscal_year' },
+            // { data: 'account_name' },
+            {
+              data: 'description_output'
+            },
+            {
+              data: 'amount_output'
+            },
+            {
+              data: 'action',
+              orderable: false,
+              searchable: false
+            },
           ]
         });
 

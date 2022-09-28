@@ -181,7 +181,7 @@ class VendorController extends Controller
                 })
                 ->addColumn('action', function ($row) {
                     $html = '<div class="btn-group" role="group" aria-label="Basic mixed styles example">';
-                    $html .= '<a href="'.route('vendor.show', $row->getHashids()).'" class="btn btn-success text-white"><svg class="icon"><use xlink:href="'.asset("vendors/@coreui/icons/sprites/free.svg#cil-magnifying-glass").'"></use></svg></a>';
+                    $html .= '<a href="'.route('procurement.show', $row->getHashids()).'" class="btn btn-success text-white"><svg class="icon"><use xlink:href="'.asset("vendors/@coreui/icons/sprites/free.svg#cil-magnifying-glass").'"></use></svg></a>';
                     $html .= '</div>';
                     
                     return $html;

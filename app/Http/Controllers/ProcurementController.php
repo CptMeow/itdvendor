@@ -132,4 +132,20 @@ class ProcurementController extends Controller
         return ['success' => true, 'message' => 'Deleted Procurement Successfully'];
     }
 
+    
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Request $request, $id)
+    {
+        $id = Hashids::decode($id)[0];
+
+        $procurement = Procurement::leftJoin('vendors', 'juristic_id', 'temp_vendor_id')    
+            ->find($id);
+        return view('app.procurement.show', compact('procurement'));
+    }
+
 }
