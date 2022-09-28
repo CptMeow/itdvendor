@@ -8,6 +8,7 @@ use App\Models\Menus;
 use App\Libraries\Helper;
 use Illuminate\Validation\Rule;
 use Vinkla\Hashids\Facades\Hashids;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\Procurement;
 
@@ -59,9 +60,11 @@ class ProcurementController extends Controller
                 })
                 ->addColumn('action', function ($row) {
                     $html = '<div class="btn-group" role="group" aria-label="Basic mixed styles example">';
-                    $html .= '<a href="'.route('procurement.show', $row->getHashids()).'" class="btn btn-success">'.__('ดู').'</a>';
-                    $html .= '<a href="button" class="btn btn-warning btn-edit">'.__('แก้ไข').'</a>';
-                    $html .= '<button data-rowid="' . $row->getHashids() . '" class="btn btn-danger btn-delete">'.__('ลบ').'</button>';
+                    $html .= '<a href="'.route('procurement.show', $row->getHashids()).'" class="btn btn-success text-white"><svg class="icon"><use xlink:href="'.asset("vendors/@coreui/icons/sprites/free.svg#cil-magnifying-glass").'"></use></svg></a>';
+                    if(Auth::user()->hasRole('admin')) {
+                    $html .= '<a href="button" class="btn btn-warning btn-edit text-white"><svg class="icon"><use xlink:href="'.asset("vendors/@coreui/icons/sprites/free.svg#cil-pencil").'"></use></svg></a>';
+                    $html .= '<button data-rowid="' . $row->getHashids() . '" class="btn btn-danger btn-delete text-white"><svg class="icon"><use xlink:href="'.asset("vendors/@coreui/icons/sprites/free.svg#cil-trash ").'"></use></svg></button>';
+                    }
                     $html .= '</div>';
                     
                     return $html;

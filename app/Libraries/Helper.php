@@ -225,6 +225,24 @@ class Helper {
         }
     }
 
+    public static function JuristicType($juristic_type_id = null)
+    {
+        $juristic_types = [
+            "1" => "บุคคลธรรมดา",
+            "2" => "นิติบุคคล",
+        ];
+        
+        if($juristic_type_id && array_key_exists($juristic_type_id, $juristic_types)) {
+            return $juristic_types[$juristic_type_id];
+        }
+        elseif(!$juristic_type_id) {
+            return $juristic_types;
+        }
+        else {
+            return 'Unknown';
+        }
+    }
+
     public static function DataSubjectCid($cid)
     {
         return $cid ?? "-";

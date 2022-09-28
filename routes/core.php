@@ -27,7 +27,12 @@ use App\Http\Controllers\Core\UsersController;
 Route::get('/404', function () {        return view('layouts.template.404'); });
 Route::get('/500', function () {        return view('layouts.template.500'); });
 Route::get('/', function () {
-    return view('welcome');
+    if(Auth::user()) {
+        return redirect('dashboard');
+    }
+    else {
+        return redirect('login');
+    }
 });
 
 

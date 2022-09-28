@@ -23,7 +23,7 @@
             }
           ?>   
           <ul class="header-nav ms-auto">
-            <li class="header-nav-item">
+            {{-- <li class="header-nav-item">
               <form id="select-locale-form" action="/locale" method="GET">
                 <select name="locale" id="select-locale" class="form-select form-select-sm">
                     @foreach($locales as $locale)
@@ -35,7 +35,7 @@
                     @endforeach
                 </select>
               </form>
-            </li>
+            </li> --}}
             <li class="nav-item d-md-down-none">
               <a class="nav-link disabled"> {{ Auth::user()->firstname.' '.Auth::user()->lastname }}</a>
             </li>

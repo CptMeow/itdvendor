@@ -11,7 +11,7 @@
                       <h4>{{ __('Procurement list') }}</h4>
                     </div>
                     <div class="col-6 text-end">
-                      <x-button link="{{ route('procurement.create') }}" class="btn-success">
+                      <x-button link="{{ route('procurement.create') }}" class="btn-success" icon="cil-plus">
                         {{ __('เพิ่มข้อมูลจัดซื้อจัดจ้าง') }}
                       </x-button>
                     </div>

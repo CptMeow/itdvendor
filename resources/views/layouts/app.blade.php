@@ -88,10 +88,10 @@
     }
   </script>
   <script>
-    let selectLocale = document.getElementById("select-locale")
-    selectLocale.addEventListener("change", function() {
-      document.getElementById('select-locale-form').submit();
-    });
+    // let selectLocale = document.getElementById("select-locale")
+    // selectLocale.addEventListener("change", function() {
+    //   document.getElementById('select-locale-form').submit();
+    // });
   </script>
   <!--JS PAGE-->
   {{ $javascript }}

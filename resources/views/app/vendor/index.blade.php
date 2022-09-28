@@ -11,7 +11,7 @@
                       <h4>{{ __('Vendor list') }}</h4>
                     </div>
                     <div class="col-6 text-end">
-                      <x-button link="{{ route('vendor.create') }}" class="btn-success">
+                      <x-button link="{{ route('vendor.create') }}" class="btn-success" icon="cil-plus">
                         {{ __('เพิ่มข้อมูลคู่ค้า') }}
                       </x-button>
                     </div>

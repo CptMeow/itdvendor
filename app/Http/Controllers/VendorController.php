@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Procurement;
 use App\Models\Vendor;
 use App\Libraries\Helper;
 use Illuminate\Http\Request;
 use Vinkla\Hashids\Facades\Hashids;
+use Illuminate\Support\Facades\Auth;
 
 class VendorController extends Controller
 {
@@ -21,17 +23,23 @@ class VendorController extends Controller
 
     public function index(Request $request)
     {
+        
         if ($request->ajax()) {
             $records = Vendor::orderBy('juristic_name_th', 'asc')
                 ->get();
 
             return datatables()->of($records)
                 ->addIndexColumn()
+                ->addColumn('juristic_type', function ($row) {
+                    return Helper::JuristicType($row->juristic_type);
+                })
                 ->addColumn('action', function ($row) {
                     $html = '<div class="btn-group" role="group" aria-label="Basic mixed styles example">';
-                    $html .= '<a href="'.route('vendor.show', $row->getHashids()).'" class="btn btn-success">'.__('ดู').'</a>';
-                    $html .= '<a href="'.route('vendor.edit', $row->getHashids()).'" class="btn btn-warning btn-edit">'.__('แก้ไข').'</a>';
-                    $html .= '<button data-rowid="' . $row->getHashids() . '" class="btn btn-danger btn-delete">'.__('ลบ').'</button>';
+                    $html .= '<a href="'.route('vendor.show', $row->getHashids()).'" class="btn btn-success text-white"><svg class="icon"><use xlink:href="'.asset("vendors/@coreui/icons/sprites/free.svg#cil-magnifying-glass").'"></use></svg></a>';
+                    if(Auth::user()->hasRole('admin')) {
+                    $html .= '<a href="'.route('vendor.edit', $row->getHashids()).'" class="btn btn-warning btn-edit text-white"><svg class="icon"><use xlink:href="'.asset("vendors/@coreui/icons/sprites/free.svg#cil-pencil").'"></use></svg></a>';
+                    $html .= '<button data-rowid="' . $row->getHashids() . '" class="btn btn-danger btn-delete text-white"><svg class="icon"><use xlink:href="'.asset("vendors/@coreui/icons/sprites/free.svg#cil-trash ").'"></use></svg></button>';
+                    }
                     $html .= '</div>';
                     
                     return $html;
@@ -145,11 +153,51 @@ class VendorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         $id = Hashids::decode($id)[0];
+
+        if ($request->ajax()) {
+            $records = Procurement::orderBy('fiscal_year', 'desc')
+                ->where('vendor_id',$id);
+
+            return datatables()->of($records)
+                ->addIndexColumn()
+                ->addColumn('account_name', function ($row) {
+                    return Helper::ChartOfAccounts($row->chart_of_account_id);
+                })
+                ->addColumn('description_output', function ($row) {
+                    $html = '<div>'.$row->description.'</div> ';
+                    $html .= '<span class="badge bg-success">'.$row->fiscal_year.'</span> ';
+                    $html .= '<span class="badge bg-info">'.Helper::Department($row->temp_department_id).'</span> ';
+                    $html .= '<span class="badge bg-danger">ชื่อบัญชี: '.Helper::ChartOfAccounts($row->chart_of_account_id).'</span> ';
+                    return $html;
+                })
+                ->addColumn('purchase_date_output', function ($row) {
+                    return date_format($row->purchase_date, 'd/m/Y');
+                })
+                ->addColumn('amount_output', function ($row) {
+                    return number_format($row->amount, 2);
+                })
+                ->addColumn('action', function ($row) {
+                    $html = '<div class="btn-group" role="group" aria-label="Basic mixed styles example">';
+                    $html .= '<a href="'.route('vendor.show', $row->getHashids()).'" class="btn btn-success text-white"><svg class="icon"><use xlink:href="'.asset("vendors/@coreui/icons/sprites/free.svg#cil-magnifying-glass").'"></use></svg></a>';
+                    $html .= '</div>';
+                    
+                    return $html;
+                })
+                ->rawColumns([
+                    'fmis_ref_no_output',
+                    'description_output',
+                    'amount_output', 
+                    'action'
+                ])
+                ->toJson();
+        }
+
         $vendor = Vendor::find($id);
-        return view('app.vendor.show', compact('vendor'));
+        $procurement_count = Procurement::where('vendor_id',$id)->count();
+        return view('app.vendor.show', compact('vendor','procurement_count'));
     }
     /**
      * Show the form for editing the specified resource.
