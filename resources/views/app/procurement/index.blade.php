@@ -21,7 +21,7 @@
                     <table class="table table-responsive-sm table-striped" id="datatables">
                     <thead>
                       <tr>
-                        <th></th>
+                        <th>{{ __('ลำดับ') }}</th>
                         <th>{{ __('Order No.') }}</th>
                         <th>{{ __('รายละเอียด') }}</th>
                         <th>{{ __('วันที่จัดซื้อ') }}</th>
@@ -62,10 +62,10 @@
             lengthMenu:    "แสดง _MENU_ รายการ",
             info:           "แสดงรายที่ _START_ ถึง _END_ ทั้งหมด _TOTAL_ รายการ",
             infoEmpty:      "แสดงรายที่ 0 ถึง 0 ทั้งหมด 0 รายการ",
-            infoFiltered:   "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+            infoFiltered:   "(กรองจากทั้งหมด _MAX_ รายการ)",
             infoPostFix:    "",
             loadingRecords: "Chargement en cours...",
-            zeroRecords:    "Aucun &eacute;l&eacute;ment &agrave; afficher",
+            zeroRecords:    "ไม่พบข้อมูล",
             emptyTable:     "ไม่พบข้อมูล",
             paginate: {
                 first:      "หน้าแรก",
@@ -74,14 +74,14 @@
                 last:       "หน้าสุดท้าย"
             },
             aria: {
-                sortAscending:  ": activer pour trier la colonne par ordre croissant",
-                sortDescending: ": activer pour trier la colonne par ordre décroissant"
+                sortAscending:  ": เรียงจากน้อยไปหามาก",
+                sortDescending: ": เรียงจากมากไปหาน้อย"
             }
           },
           columns: [
               { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
               { data: 'fmis_ref_no_output'},
-              { data: 'description_output' },
+              { data: 'description_output', name: 'description' },
               { data: 'purchase_date_output', orderable: true, searchable: false },
               { data: 'amount_output' },
               { data: 'action', orderable: false, searchable: false }

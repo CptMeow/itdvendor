@@ -43,7 +43,7 @@ class ProcurementController extends Controller
                     'temp_department_id'
                 )
                 ->orderBy('purchase_date', 'desc')
-                ->leftJoin('vendors', 'juristic_id', 'temp_vendor_id');
+                ->leftJoin('vendors as b', 'juristic_id', 'temp_vendor_id');
 
             return Datatables::eloquent($records)
                 ->addIndexColumn()

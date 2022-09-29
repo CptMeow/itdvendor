@@ -55,6 +55,28 @@
           serverSide: true,
           responsive: true,
           ajax: "{{ route('vendor.index') }}",
+          language: {
+            processing:     "กำลังประมวลผล...",
+            search:         "ค้นหา:",
+            lengthMenu:    "แสดง _MENU_ รายการ",
+            info:           "แสดงรายที่ _START_ ถึง _END_ ทั้งหมด _TOTAL_ รายการ",
+            infoEmpty:      "แสดงรายที่ 0 ถึง 0 ทั้งหมด 0 รายการ",
+            infoFiltered:   "(กรองจากทั้งหมด _MAX_ รายการ)",
+            infoPostFix:    "",
+            loadingRecords: "Chargement en cours...",
+            zeroRecords:    "ไม่พบข้อมูล",
+            emptyTable:     "ไม่พบข้อมูล",
+            paginate: {
+                first:      "หน้าแรก",
+                previous:   "ย้อนกลับ",
+                next:       "ถัดไป",
+                last:       "หน้าสุดท้าย"
+            },
+            aria: {
+                sortAscending:  ": เรียงจากน้อยไปหามาก",
+                sortDescending: ": เรียงจากมากไปหาน้อย"
+            }
+          },
           columns: [
               { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
               { data: 'juristic_id'},
