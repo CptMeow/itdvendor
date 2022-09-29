@@ -50,6 +50,7 @@
             btnSave = $('.btn-save'),
             btnUpdate = $('.btn-update');
         var table = $('#datatables').DataTable({
+          autoWidth: false,
           processing: true,
           serverSide: true,
           responsive: true,

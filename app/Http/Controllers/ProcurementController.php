@@ -9,6 +9,7 @@ use App\Libraries\Helper;
 use Illuminate\Validation\Rule;
 use Vinkla\Hashids\Facades\Hashids;
 use Illuminate\Support\Facades\Auth;
+use Yajra\DataTables\Facades\DataTables;
 
 use App\Models\Procurement;
 
@@ -28,14 +29,22 @@ class ProcurementController extends Controller
     public function index(Request $request){
 
         //$procurements = Procurement::orderBy('purchase_date','desc')->get();
-
         
         if ($request->ajax()) {
-            $records = Procurement::orderBy('purchase_date', 'desc')
-                ->leftJoin('vendors', 'juristic_id', 'temp_vendor_id')    
-                ->get();
+            $records = Procurement::select(
+                    'amount',
+                    'description',
+                    'fiscal_year',
+                    'fmis_ref_no',
+                    'juristic_id',
+                    'juristic_name_th',
+                    'purchase_date',
+                    'temp_department_id'
+                )
+                ->orderBy('purchase_date', 'desc')
+                ->leftJoin('vendors', 'juristic_id', 'temp_vendor_id');
 
-            return datatables()->of($records)
+            return Datatables::eloquent($records)
                 ->addIndexColumn()
                 ->addColumn('fmis_ref_no_output', function ($row) {
                     $html = '<span class="badge bg-warning">'.$row->fmis_ref_no.'</span> ';
@@ -45,7 +54,7 @@ class ProcurementController extends Controller
                     $html = '<div>'.$row->description.'</div> ';
                     $html .= '<span class="badge bg-success">'.$row->fiscal_year.'</span> ';
                     $html .= '<span class="badge bg-info">'.Helper::Department($row->temp_department_id).'</span> ';
-                    $html .= '<span class="badge bg-dark">['.$row->temp_vendor_id.'] '.$row->juristic_name_th.'</span> ';
+                    $html .= '<span class="badge bg-dark">['.$row->juristic_id.'] '.$row->juristic_name_th.'</span> ';
                     return $html;
                 })
                 ->addColumn('fiscal_year_output', function ($row) {

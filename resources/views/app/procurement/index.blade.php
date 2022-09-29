@@ -8,7 +8,7 @@
                 <div class="card-header ">
                   <div class="row">
                     <div class="col-6 text-start">
-                      <h4>{{ __('Procurement list') }}</h4>
+                      <h4>{{ __('ข้อมูลจัดซื้อจัดจ้าง') }}</h4>
                     </div>
                     <div class="col-6 text-end">
                       <x-button link="{{ route('procurement.create') }}" class="btn-success" icon="cil-plus">
@@ -51,9 +51,33 @@
             btnSave = $('.btn-save'),
             btnUpdate = $('.btn-update');
         var table = $('#datatables').DataTable({
+          autoWidth: false,
           processing: true,
           serverSide: true,
+          responsive: true,
           ajax: "{{ route('procurement.index') }}",
+          language: {
+            processing:     "กำลังประมวลผล...",
+            search:         "ค้นหา:",
+            lengthMenu:    "แสดง _MENU_ รายการ",
+            info:           "แสดงรายที่ _START_ ถึง _END_ ทั้งหมด _TOTAL_ รายการ",
+            infoEmpty:      "แสดงรายที่ 0 ถึง 0 ทั้งหมด 0 รายการ",
+            infoFiltered:   "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+            infoPostFix:    "",
+            loadingRecords: "Chargement en cours...",
+            zeroRecords:    "Aucun &eacute;l&eacute;ment &agrave; afficher",
+            emptyTable:     "ไม่พบข้อมูล",
+            paginate: {
+                first:      "หน้าแรก",
+                previous:   "ย้อนกลับ",
+                next:       "ถัดไป",
+                last:       "หน้าสุดท้าย"
+            },
+            aria: {
+                sortAscending:  ": activer pour trier la colonne par ordre croissant",
+                sortDescending: ": activer pour trier la colonne par ordre décroissant"
+            }
+          },
           columns: [
               { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
               { data: 'fmis_ref_no_output'},

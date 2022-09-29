@@ -8,6 +8,7 @@ use App\Libraries\Helper;
 use Illuminate\Http\Request;
 use Vinkla\Hashids\Facades\Hashids;
 use Illuminate\Support\Facades\Auth;
+use Yajra\DataTables\Facades\DataTables;
 
 class VendorController extends Controller
 {
@@ -25,10 +26,9 @@ class VendorController extends Controller
     {
         
         if ($request->ajax()) {
-            $records = Vendor::orderBy('juristic_name_th', 'asc')
-                ->get();
+            $records = Vendor::orderBy('juristic_name_th', 'asc');
 
-            return datatables()->of($records)
+            return Datatables::eloquent
                 ->addIndexColumn()
                 ->addColumn('juristic_type', function ($row) {
                     return Helper::JuristicType($row->juristic_type);
