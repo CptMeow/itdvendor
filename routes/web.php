@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProcurementController;
 use App\Http\Controllers\VendorController;
 /*
@@ -13,4 +14,5 @@ require __DIR__ . '/core.php';
 Route::group(['middleware' => ['role:user','get.menu']], function () {
   Route::resource('procurement',        ProcurementController::class);
   Route::resource('vendor',        VendorController::class);
+  Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');   
 });

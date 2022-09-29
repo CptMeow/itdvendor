@@ -28,7 +28,7 @@ class VendorController extends Controller
         if ($request->ajax()) {
             $records = Vendor::orderBy('juristic_name_th', 'asc');
 
-            return Datatables::eloquent
+            return Datatables::eloquent($records)
                 ->addIndexColumn()
                 ->addColumn('juristic_type', function ($row) {
                     return Helper::JuristicType($row->juristic_type);
