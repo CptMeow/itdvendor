@@ -11,7 +11,7 @@
                     <use xlink:href=" {{ asset('vendors/@coreui/icons/sprites/free.svg#cil-building') }}"></use>
                   </svg>
                 </div>
-                <div class="fs-4 fw-semibold">{{ number_format($vendors, 2) }}</div><small class="text-medium-emphasis text-uppercase fw-semibold">ผู้ค้า</small>
+                <div class="fs-4 fw-semibold">{{ number_format($vendors, 0) }}</div><small class="text-medium-emphasis text-uppercase fw-semibold">ผู้ค้า</small>
                 <div class="progress progress-thin mt-3 mb-0">
                   <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
@@ -27,7 +27,7 @@
                     <use xlink:href=" {{ asset('vendors/@coreui/icons/sprites/free.svg#cil-description') }}"></use>
                   </svg>
                 </div>
-                <div class="fs-4 fw-semibold">{{ number_format($procurements, 2) }}</div><small class="text-medium-emphasis text-uppercase fw-semibold">จัดซื้อจัดจ้าง</small>
+                <div class="fs-4 fw-semibold">{{ number_format($procurements, 0) }}</div><small class="text-medium-emphasis text-uppercase fw-semibold">จัดซื้อจัดจ้าง</small>
                 <div class="progress progress-thin mt-3 mb-0">
                   <div class="progress-bar bg-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
