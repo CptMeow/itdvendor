@@ -3,9 +3,14 @@
 namespace App\Http\Controllers\Core;
 
 use App\Http\Controllers\Controller;
-
-use Illuminate\Http\Request;
 use App\Models\User;
+use DB;
+use Hash;
+use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
+use Spatie\Permission\Models\Role;
+    
 
 class UsersController extends Controller
 {
@@ -30,7 +35,7 @@ class UsersController extends Controller
     {
         $you = auth()->user();
         $users = User::all();
-        return view('app.core.admin.usersList', compact('users', 'you'));
+        return view('app.core.users.index', compact('users', 'you'));
     }
 
     /**
@@ -46,6 +51,45 @@ class UsersController extends Controller
     }
 
     /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $roles = Role::pluck('name','name')->all();
+        return view('app.core.users.create',compact('roles'));
+    }
+    
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            // 'name' => 'required',
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|same:confirm-password',
+            'roles' => 'required'
+        ]);
+    
+        $input = $request->all();
+        $input['name'] =  $input['firstname'].' '.$input['lastname'];
+        $input['password'] = Hash::make($input['password']);
+    
+        $user = User::create($input);
+        $user->assignRole($request->input('roles'));
+    
+        return redirect()->route('admin.users.index')
+                        ->with('success','User created successfully');
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -53,8 +97,15 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
-        return view('app.core.admin.userEditForm', compact('user'));
+        if(Auth::user()->hasRole('admin')){
+            $user = User::find($id);
+        }
+        else{
+            $user = User::find(Auth::user()->id);
+        }
+        $roles = Role::pluck('name','name')->all();
+        $userRole = $user->roles->pluck('name','name')->all();
+        return view('app.core.users.edit', compact('user','roles','userRole'));
     }
 
     /**
