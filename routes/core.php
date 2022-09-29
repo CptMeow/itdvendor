@@ -46,7 +46,7 @@ require __DIR__ . '/auth.php';
 | Admin Route
 */
 Route::group(['prefix' => 'admin','as'=>'admin.', 'middleware' => ['role:admin','get.menu']], function () {
-    Route::resource('users',        UsersController::class)->except( ['create', 'store'] );
+    Route::resource('users',        UsersController::class);
     Route::resource('languages',    LanguageController::class);
     Route::resource('roles',        RolesController::class);
     Route::get('/roles/move/move-up',      [RolesController::class, 'moveUp'])->name('roles.up');
