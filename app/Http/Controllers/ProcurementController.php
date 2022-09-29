@@ -38,6 +38,7 @@ class ProcurementController extends Controller
                     'fmis_ref_no',
                     'juristic_id',
                     'juristic_name_th',
+                    'procurement_id',
                     'purchase_date',
                     'temp_department_id'
                 )
