@@ -80,10 +80,10 @@
           },
           columns: [
               { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false },
-              { data: 'fmis_ref_no_output'},
+              { data: 'fmis_ref_no_output', name: 'fmis_ref_no'},
               { data: 'description_output', name: 'description' },
-              { data: 'purchase_date_output', orderable: true, searchable: false },
-              { data: 'amount_output' },
+              { data: 'purchase_date_output', name: 'purchase_date', orderable: true, searchable: false },
+              { data: 'amount_output', name: 'amount' },
               { data: 'action', orderable: false, searchable: false }
           ]
         });

@@ -183,7 +183,7 @@
             // { data: 'fiscal_year' },
             // { data: 'account_name' },
             { data: 'description_output', name: 'description' },
-            { data: 'amount_output' },
+            { data: 'amount_output', name: 'amount' },
             { data: 'action', orderable: false, searchable: false },
           ]
         });
