@@ -23,7 +23,7 @@ class DashboardController extends Controller
     {
 
         $vendors = Vendor::count();
-        $vendor_blacklist = Procurement::whereNotNull('blacklist_flag')->count();
+        $vendor_blacklist = Vendor::whereNotNull('blacklist_flag')->count();
         $procurements = Procurement::count();
         $amount = Procurement::sum('amount');
 
