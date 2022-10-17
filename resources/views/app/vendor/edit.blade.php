@@ -6,7 +6,7 @@
           <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <div class="card">
               <div class="card-header">
-                <h4> Add vendor </h4>
+                <h4> แก้ไขข้อมูลคู่ค้า </h4>
               </div>
               <div class="card-body">
                 <form method="POST" action="{{ route("vendor.store") }}" class="row g-3">

@@ -161,7 +161,7 @@ class VendorController extends Controller
             $records = Procurement::orderBy('fiscal_year', 'desc')
                 ->where('vendor_id',$id);
 
-            return datatables()->eloquent($records)
+            return datatables()->eloquentฝ($records)
                 ->addIndexColumn()
                 ->addColumn('account_name', function ($row) {
                     return Helper::ChartOfAccounts($row->chart_of_account_id);

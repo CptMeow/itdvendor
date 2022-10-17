@@ -18,7 +18,7 @@
           <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <div class="card">
               <div class="card-header">
-                <h4> {{__('เพิ่มข้อมูลผู้ค้า')}} </h4>
+                <h4> {{__('เพิ่มข้อมูลคู่ค้า')}} </h4>
               </div>
               <div class="card-body">
                 <form method="POST" action="{{ route("vendor.store") }}" class="row g-3">

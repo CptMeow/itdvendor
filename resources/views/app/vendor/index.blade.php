@@ -8,7 +8,7 @@
                 <div class="card-header ">
                   <div class="row">
                     <div class="col-6 text-start">
-                      <h4>{{ __('ข้อมูลผู้ค้า') }}</h4>
+                      <h4>{{ __('ข้อมูลคู่ค้า') }}</h4>
                     </div>
                     <div class="col-6 text-end">
                       <x-button link="{{ route('vendor.create') }}" class="btn-success" icon="cil-plus">
