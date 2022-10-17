@@ -4,10 +4,10 @@
             <svg class="icon icon-lg">
               <use xlink:href="{{ asset("vendors/@coreui/icons/sprites/free.svg#cil-menu") }}"></use>
             </svg>
-          </button><a class="header-brand d-md-none" href="#">
-            <svg width="118" height="46" alt="CoreUI Logo">
-              <use xlink:href="{{ asset("assets/brand/coreui.svg#full")}}"></use>
-            </svg></a>
+          </button>
+          <a class="header-brand d-md-none fw-bold" href="#">
+            ITD AVL
+          </a>
           {{-- <form class="d-flex" role="search">
             <div class="input-group"><span class="input-group-text bg-light border-0 px-1" id="search-addon">
                 <svg class="icon icon-lg my-1 mx-2 text-disabled">
